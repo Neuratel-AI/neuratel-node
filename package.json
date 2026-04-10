@@ -1,0 +1,50 @@
+{
+  "name": "@neuratelai/sdk",
+  "version": "0.1.0",
+  "description": "Official TypeScript/JavaScript SDK for the Neuratel API",
+  "keywords": ["neuratelai", "neuratel", "voice-ai", "telephony", "sdk", "ai-agents"],
+  "license": "MIT",
+  "author": "Neuratel AI <dev@neuratel.ai>",
+  "homepage": "https://neuratel.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Neuratel-AI/neuratel-node"
+  },
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE", "CHANGELOG.md"],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome lint src",
+    "format": "biome format --write src",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^20.17.6",
+    "tsup": "^8.4.0",
+    "typescript": "~5.8.3",
+    "vitest": "^2.1.9"
+  }
+}
