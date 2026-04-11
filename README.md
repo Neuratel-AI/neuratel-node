@@ -1,7 +1,7 @@
 # Neuratel AI — TypeScript SDK
 
-[![npm](https://img.shields.io/npm/v/@neuratelai/sdk?style=flat&colorA=black&colorB=black)](https://www.npmjs.com/package/@neuratelai/sdk)
-[![Node](https://img.shields.io/node/v/@neuratelai/sdk?style=flat&colorA=black&colorB=black)](https://www.npmjs.com/package/@neuratelai/sdk)
+[![npm](https://img.shields.io/npm/v/@neuratelai/sdk)](https://www.npmjs.com/package/@neuratelai/sdk)
+[![Node](https://img.shields.io/node/v/@neuratelai/sdk)](https://www.npmjs.com/package/@neuratelai/sdk)
 [![Docs](https://img.shields.io/badge/docs-docs.neuratel.ai-black)](https://docs.neuratel.ai/sdk/overview)
 
 Official TypeScript/JavaScript SDK for the [Neuratel](https://neuratel.ai) API. Zero runtime dependencies — uses the native `fetch` API built into Node 18+.
