@@ -1,6 +1,6 @@
 {
   "name": "@neuratelai/sdk",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Official TypeScript/JavaScript SDK for the Neuratel API",
   "keywords": ["neuratelai", "neuratel", "voice-ai", "telephony", "sdk", "ai-agents"],
   "license": "MIT",
