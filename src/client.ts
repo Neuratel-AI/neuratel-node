@@ -16,13 +16,13 @@ export type { ClientOptions };
  * Official Neuratel API client for Node.js and the browser.
  *
  * ```typescript
- * import { NeuratelAI } from '@neuratel/sdk';
+ * import { NeuratelAI } from '@neuratelai/sdk';
  *
- * const client = new NeuratelAI({ apiKey: process.env.NEURATEL_API_KEY });
+ * const client = new NeuratelAI(); // reads NEURATEL_API_KEY from env
  *
  * const agent = await client.agents.create({ name: 'Support Bot', brain: { ... } });
  *
- * for await (const agent of client.agents.list()) {
+ * for await (const agent of await client.agents.list()) {
  *   console.log(agent.name);
  * }
  * ```
@@ -41,7 +41,7 @@ export class NeuratelAI {
 
   private readonly _client: APIClient;
 
-  constructor(options: ClientOptions) {
+  constructor(options: ClientOptions = {}) {
     this._client = new APIClient(options);
     this.agents = new AgentsResource(this._client);
     this.calls = new CallsResource(this._client);

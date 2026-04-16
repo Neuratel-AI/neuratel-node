@@ -22,10 +22,11 @@ export class KnowledgeBaseResource {
 
   /** Upload a file (PDF, DOCX, TXT) as a knowledge base source. Pass a Blob or File. */
   async fromFile(file: Blob | File, name?: string): Promise<Record<string, unknown>> {
+    const filename = name ?? (file instanceof File ? file.name : "upload");
     const form = new FormData();
-    form.append("file", file, name ?? (file instanceof File ? file.name : "upload"));
-    const response = await this._client.request<Record<string, unknown>>("POST", "/knowledge-base/from-file", { body: form });
-    return response;
+    form.append("file", file, filename);
+    form.append("name", filename);
+    return this._client.request<Record<string, unknown>>("POST", "/knowledge-base/from-file", { body: form });
   }
 
   fromUrl(url: string, body: Record<string, unknown> = {}): Promise<Record<string, unknown>> {
@@ -33,7 +34,7 @@ export class KnowledgeBaseResource {
   }
 
   fromText(text: string, body: Record<string, unknown> = {}): Promise<Record<string, unknown>> {
-    return this._client.post("/knowledge-base/from-text", { text, ...body });
+    return this._client.post("/knowledge-base/from-text", { content: text, ...body });
   }
 
   query(query: string, body: Record<string, unknown> = {}): Promise<Record<string, unknown>> {

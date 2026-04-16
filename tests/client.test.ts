@@ -55,3 +55,24 @@ describe("Error hierarchy", () => {
     expect(err.message).toContain("field required");
   });
 });
+
+describe("Environment variable support", () => {
+  it("reads NEURATEL_API_KEY from env when apiKey is not passed", () => {
+    process.env.NEURATEL_API_KEY = "nk_from_env";
+    const client = new NeuratelAI();
+    expect(client.agents).toBeDefined();
+    delete process.env.NEURATEL_API_KEY;
+  });
+
+  it("throws when no key is available", () => {
+    delete process.env.NEURATEL_API_KEY;
+    expect(() => new NeuratelAI()).toThrow("No API key provided");
+  });
+
+  it("explicit apiKey takes precedence over env", () => {
+    process.env.NEURATEL_API_KEY = "nk_env";
+    const client = new NeuratelAI({ apiKey: "nk_explicit" });
+    expect(client.toString()).toContain("api.neuratel.ai");
+    delete process.env.NEURATEL_API_KEY;
+  });
+});

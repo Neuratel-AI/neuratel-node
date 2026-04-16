@@ -65,7 +65,7 @@ function shouldRetry(status: number): boolean {
 }
 
 export interface ClientOptions {
-  apiKey: string;
+  apiKey?: string;
   baseUrl?: string;
   timeoutMs?: number;
   maxRetries?: number;
@@ -79,8 +79,14 @@ export class APIClient {
   private readonly _maxRetries: number;
   private readonly _fetch: typeof globalThis.fetch;
 
-  constructor(options: ClientOptions) {
-    this._apiKey = options.apiKey;
+  constructor(options: ClientOptions = {}) {
+    const apiKey = options.apiKey ?? (typeof process !== "undefined" ? process.env?.NEURATEL_API_KEY : undefined);
+    if (!apiKey) {
+      throw new Error(
+        "No API key provided. Pass apiKey in options or set the NEURATEL_API_KEY environment variable."
+      );
+    }
+    this._apiKey = apiKey;
     this.baseUrl = (options.baseUrl ?? DEFAULT_BASE_URL).replace(/\/$/, "");
     this._timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS;
     this._maxRetries = options.maxRetries ?? DEFAULT_MAX_RETRIES;
@@ -92,7 +98,7 @@ export class APIClient {
       Authorization: `Bearer ${this._apiKey}`,
       "Content-Type": "application/json",
       Accept: "application/json",
-      "User-Agent": `@neuratel/sdk/${VERSION}`,
+      "User-Agent": `@neuratelai/sdk/${VERSION}`,
     };
   }
 

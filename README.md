@@ -22,8 +22,8 @@ const client = new NeuratelAI(); // reads NEURATEL_API_KEY from env
 // Create an agent
 const agent = await client.agents.create({
   name: "Support Bot",
-  brain: { provider: "openai", model: "gpt-4.1", instructions: "You are a helpful support agent." },
-  voice: { provider: "elevenlabs", voice_id: "gHu9GtaHOXcSqFTK06ux", model: "eleven_flash_v2_5" },
+  brain: { provider: "groq", model: "meta-llama/llama-4-scout-17b-16e-instruct", instructions: "You are a helpful support agent." },
+  voice: { provider: "cartesia", voice_id: "8d8ce8c9-44a4-46c4-b10f-9a927b99a853", model: "sonic-3" },
   transcriber: { provider: "deepgram", model: "nova-3" },
 });
 console.log(agent.id);
@@ -32,7 +32,7 @@ console.log(agent.id);
 const call = await client.calls.outbound({
   agent_id: agent.id,
   to_number: "+14155551234",
-  number_id: "pn_your_number_id",
+  number_id: "your-number-uuid",
 });
 console.log(call.status);
 
