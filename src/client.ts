@@ -1,6 +1,6 @@
 import { APIClient, type ClientOptions } from "./core.js";
 import { AgentsResource } from "./resources/agents.js";
-import { CallsResource } from "./resources/calls.js";
+import { VoiceSessionsResource } from "./resources/voice-sessions.js";
 import { PhoneNumbersResource } from "./resources/phone-numbers.js";
 import { CampaignsResource } from "./resources/campaigns.js";
 import { CallListsResource } from "./resources/call-lists.js";
@@ -29,10 +29,8 @@ export type { ClientOptions };
  */
 export class NeuratelAI {
   readonly agents: AgentsResource;
-  /** @deprecated use `voiceSessions` — same instance, new name. */
-  readonly calls: CallsResource;
   /** Unified voice surface: phone, web, and WhatsApp voice. */
-  readonly voiceSessions: CallsResource;
+  readonly voiceSessions: VoiceSessionsResource;
   readonly phoneNumbers: PhoneNumbersResource;
   readonly campaigns: CampaignsResource;
   readonly callLists: CallListsResource;
@@ -47,8 +45,7 @@ export class NeuratelAI {
   constructor(options: ClientOptions = {}) {
     this._client = new APIClient(options);
     this.agents = new AgentsResource(this._client);
-    this.calls = new CallsResource(this._client);
-    this.voiceSessions = this.calls; // alias — same instance, new name
+    this.voiceSessions = new VoiceSessionsResource(this._client);
     this.phoneNumbers = new PhoneNumbersResource(this._client);
     this.campaigns = new CampaignsResource(this._client);
     this.callLists = new CallListsResource(this._client);

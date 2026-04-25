@@ -5,7 +5,7 @@ describe("NeuratelAI client", () => {
   it("instantiates with all 10 resources", () => {
     const client = new NeuratelAI({ apiKey: "nk_test_key" });
     expect(client.agents).toBeDefined();
-    expect(client.calls).toBeDefined();
+    expect(client.voiceSessions).toBeDefined();
     expect(client.phoneNumbers).toBeDefined();
     expect(client.campaigns).toBeDefined();
     expect(client.callLists).toBeDefined();
