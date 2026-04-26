@@ -29,7 +29,7 @@ const agent = await client.agents.create({
 console.log(agent.id);
 
 // Place an outbound call
-const call = await client.calls.outbound({
+const call = await client.voiceSessions.outbound({
   agent_id: agent.id,
   to_number: "+14155551234",
   number_id: "your-number-uuid",
@@ -47,7 +47,7 @@ for await (const agent of await client.agents.list()) {
 | Resource | Methods |
 |----------|---------|
 | `agents` | `create`, `list`, `get`, `update`, `delete`, `duplicate`, `webCall`, `listVersions`, `getVersion`, `restoreVersion` |
-| `calls` | `list`, `get`, `delete`, `outbound`, `active`, `concurrency`, `hangup`, `listen`, `whisper`, `barge` |
+| `voiceSessions` | `list`, `get`, `update`, `delete`, `outbound`, `active`, `concurrency`, `hangup`, `listen`, `whisper`, `barge` |
 | `phoneNumbers` | `list`, `get`, `update`, `assign`, `unassign` |
 | `campaigns` | `create`, `list`, `get`, `update`, `delete`, `start`, `pause`, `stop`, `listCalls`, `getCall` |
 | `callLists` | `create`, `list`, `get`, `update`, `delete`, `bulkImport`, `addContact`, `listContacts`, `updateContact`, `deleteContact` |
