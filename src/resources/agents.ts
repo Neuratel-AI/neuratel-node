@@ -44,4 +44,14 @@ export class AgentsResource {
   restoreVersion(agentId: string, version: number): Promise<Record<string, unknown>> {
     return this._client.post(`/agents/${agentId}/versions/${version}/restore`);
   }
+
+  /** List the platform's pre-built agent templates (read-only catalog). */
+  templates(): Promise<Record<string, unknown>> {
+    return this._client.get("/agents/templates");
+  }
+
+  /** List the {{variable}} placeholders an agent requires at call time. */
+  requiredVariables(agentId: string): Promise<Record<string, unknown>> {
+    return this._client.get(`/agents/${agentId}/required-variables`);
+  }
 }

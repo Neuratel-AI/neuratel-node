@@ -2,10 +2,11 @@ import { describe, it, expect } from "vitest";
 import { NeuratelAI, APIError, AuthenticationError, NotFoundError, RateLimitError } from "../src/index.js";
 
 describe("NeuratelAI client", () => {
-  it("instantiates with all 10 resources", () => {
+  it("instantiates with all 13 resources", () => {
     const client = new NeuratelAI({ apiKey: "nk_test_key" });
     expect(client.agents).toBeDefined();
     expect(client.voiceSessions).toBeDefined();
+    expect(client.conversations).toBeDefined();
     expect(client.phoneNumbers).toBeDefined();
     expect(client.campaigns).toBeDefined();
     expect(client.callLists).toBeDefined();
@@ -14,6 +15,14 @@ describe("NeuratelAI client", () => {
     expect(client.billing).toBeDefined();
     expect(client.apiKeys).toBeDefined();
     expect(client.integrations).toBeDefined();
+    expect(client.dnc).toBeDefined();
+    expect(client.analytics).toBeDefined();
+  });
+
+  it("agents resource exposes templates + requiredVariables", () => {
+    const client = new NeuratelAI({ apiKey: "nk_test_key" });
+    expect(typeof client.agents.templates).toBe("function");
+    expect(typeof client.agents.requiredVariables).toBe("function");
   });
 
   it("uses default base URL", () => {
