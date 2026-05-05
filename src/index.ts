@@ -1,6 +1,12 @@
 export { NeuratelAI } from "./client.js";
 export type { ClientOptions } from "./client.js";
 
+// Typed interfaces auto-generated from the OpenAPI spec. Available as a
+// namespace so resource result casts read cleanly:
+//   import { type Types } from "@neuratelai/sdk";
+//   const session = (await client.voiceSessions.get(id)) as Types.VoiceSession;
+export type * as Types from "./types/index.js";
+
 export {
   NeuratelError,
   APIError,
