@@ -5,7 +5,7 @@
 Initial release.
 
 - Zero runtime dependencies — native `fetch` (Node 18+)
-- 10 resource groups: `agents`, `calls`, `phoneNumbers`, `campaigns`, `callLists`, `knowledgeBase`, `webhooks`, `billing`, `apiKeys`, `integrations`
+- 10 resource groups: `agents`, `voiceSessions`, `phoneNumbers`, `campaigns`, `callLists`, `knowledgeBase`, `webhooks`, `billing`, `apiKeys`, `integrations`
 - Automatic retries with exponential backoff on `429`, `408`, `5xx`
 - Async pagination with `Page<T>` and `for await` support
 - Typed exception hierarchy (`AuthenticationError`, `NotFoundError`, `RateLimitError`, etc.)
