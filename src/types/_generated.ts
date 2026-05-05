@@ -9066,8 +9066,8 @@ export interface components {
          * @description Turn detection configuration for voice pipeline agents.
          *
          *     Modes:
-         *     - semantic_vad: Silero VAD + LiveKit MultilingualModel — context-aware EOU (60+ languages)
-         *     - semantic_vad_en: Silero VAD + LiveKit EnglishModel — faster, English-only
+         *     - semantic_vad: Silero VAD + multilingual context-aware EOU model (60+ languages)
+         *     - semantic_vad_en: Silero VAD + English-only context-aware EOU model — faster
          *     - vad: Silero VAD only — fast, silence-based detection
          *     - stt: STT-native EOU (auto-selected for Soniox; Soniox owns turn-end detection)
          *
@@ -9621,7 +9621,7 @@ export interface components {
          *
          *     Soniox owns end-of-utterance detection internally via semantic endpointing,
          *     so the worker auto-routes turn_detection.mode to "stt" when this provider is
-         *     selected. The LiveKit MultilingualModel/EnglishModel turn detector is bypassed.
+         *     selected. The platform's standalone semantic turn-detection model is bypassed.
          */
         SonioxTranscriberConfig: {
             /**
