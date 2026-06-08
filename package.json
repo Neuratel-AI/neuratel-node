@@ -38,7 +38,9 @@
     "format": "biome format --write src",
     "test": "vitest run",
     "test:watch": "vitest",
-    "generate:types": "openapi-typescript ../Platform/docs/apis/openapi.json -o src/types/_generated.ts"
+    "generate:types:remote": "openapi-typescript https://api.neuratel.ai/openapi.json -o src/types/_generated.ts",
+    "generate:types:local": "openapi-typescript ../platform/research/competitor-schemas/neuratel-openapi.json -o src/types/_generated.ts",
+    "generate:types": "npm run generate:types:remote || npm run generate:types:local"
   },
   "dependencies": {},
   "devDependencies": {

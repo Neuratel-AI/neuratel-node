@@ -46,16 +46,21 @@ for await (const agent of await client.agents.list()) {
 
 | Resource | Methods |
 |----------|---------|
-| `agents` | `create`, `list`, `get`, `update`, `delete`, `duplicate`, `webCall`, `listVersions`, `getVersion`, `restoreVersion` |
-| `voiceSessions` | `list`, `get`, `update`, `delete`, `outbound`, `active`, `concurrency`, `hangup`, `listen`, `whisper`, `barge` |
-| `phoneNumbers` | `list`, `get`, `update`, `assign`, `unassign` |
-| `campaigns` | `create`, `list`, `get`, `update`, `delete`, `start`, `pause`, `stop`, `listCalls`, `getCall` |
-| `callLists` | `create`, `list`, `get`, `update`, `delete`, `bulkImport`, `addContact`, `listContacts`, `updateContact`, `deleteContact` |
-| `knowledgeBase` | `list`, `get`, `update`, `delete`, `fromFile`, `fromUrl`, `fromText`, `query`, `listForAgent`, `assignToAgent` |
-| `webhooks` | `events`, `create`, `list`, `get`, `update`, `delete`, `test`, `rotateSecret`, `logs` |
-| `billing` | `balance`, `usage`, `balanceHistory` |
+| `agents` | `create`, `list`, `get`, `update`, `delete`, `duplicate`, `webCall`, `listVersions`, `getVersion`, `restoreVersion`, `templates`, `requiredVariables` |
+| `analytics` | `dashboard` |
 | `apiKeys` | `create`, `list`, `revoke`, `rotate`, `scopes` |
-| `integrations` | `list`, `create`, `update`, `delete`, `listTools`, `refreshTools` |
+| `billing` | `balance`, `usage`, `balanceHistory` |
+| `callLists` | `create`, `list`, `get`, `update`, `delete`, `bulkImport`, `addContact`, `listContacts`, `updateContact`, `deleteContact` |
+| `campaigns` | `create`, `list`, `get`, `update`, `delete`, `start`, `pause`, `stop`, `listCalls`, `getCall` |
+| `conversations` | `list`, `get`, `listMessages`, `sendMessage`, `markRead`, `timeline`, `updateDynamicVariables`, `analyticsDashboard` |
+| `dnc` | `check`, `listEntries`, `addEntry`, `deleteEntry`, `getSettings`, `updateSettings` |
+| `integrations` | `list`, `create`, `update`, `delete`, `listTools`, `refreshTools`, `listConnections`, `createConnection`, `updateConnection`, `deleteConnection` |
+| `knowledgeBase` | `list`, `get`, `update`, `delete`, `fromFile`, `fromUrl`, `fromText`, `query`, `listForAgent`, `assignToAgent` |
+| `phoneNumbers` | `list`, `get`, `update`, `assign`, `unassign` |
+| `voiceSessions` | `list`, `get`, `update`, `delete`, `outbound`, `listActive`, `concurrency`, `hangup`, `listen`, `whisper`, `barge` |
+| `webhooks` | `events`, `create`, `list`, `get`, `update`, `delete`, `test`, `rotateSecret`, `logs` |
+| `whatsapp` | `listAccounts`, `importAccount`, `importAccountManual`, `getAccount`, `updateAccount`, `deleteAccount`, `listTemplates`, `checkCallPermission`, `getCallStatus`, `verifyAccount`, `outboundCall`, `outboundMessage`, `outboundText`, `outboundVoice`, `batchCall`, `getMessageMedia` |
+| `workflows` | `create`, `list`, `get`, `update`, `delete`, `saveGraph`, `publish` |
 
 ## Error Handling
 
@@ -80,6 +85,11 @@ Automatic retries with exponential backoff on `429`, `408`, and `5xx`. Configura
 const client = new NeuratelAI({ maxRetries: 3, timeoutMs: 15_000 });
 ```
 
+## Links
+
+- [Documentation](https://docs.neuratel.ai/sdk/overview) · [API Reference](https://docs.neuratel.ai/api) · [Changelog](https://github.com/Neuratel-AI/neuratel-node/releases)
+- [Contributing](https://github.com/Neuratel-AI/neuratel-node/blob/main/CONTRIBUTING.md) · [Security](https://github.com/Neuratel-AI/neuratel-node/blob/main/SECURITY.md) · [Code of Conduct](https://github.com/Neuratel-AI/neuratel-node/blob/main/CODE_OF_CONDUCT.md)
+
 ## Requirements
 
-Node.js 18+ · [docs.neuratel.ai](https://docs.neuratel.ai/sdk/overview)
+Node.js 18+

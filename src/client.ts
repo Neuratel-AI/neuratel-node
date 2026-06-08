@@ -12,29 +12,14 @@ import { BillingResource } from "./resources/billing.js";
 import { APIKeysResource } from "./resources/api-keys.js";
 import { IntegrationsResource } from "./resources/integrations.js";
 import { DNCResource } from "./resources/dnc.js";
+import { WorkflowsResource } from "./resources/workflows.js";
+import { WhatsappResource } from "./resources/whatsapp.js";
 
 export type { ClientOptions };
 
-/**
- * Official Neuratel API client for Node.js and the browser.
- *
- * ```typescript
- * import { NeuratelAI } from '@neuratelai/sdk';
- *
- * const client = new NeuratelAI(); // reads NEURATEL_API_KEY from env
- *
- * const agent = await client.agents.create({ name: 'Support Bot', brain: { ... } });
- *
- * for await (const agent of await client.agents.list()) {
- *   console.log(agent.name);
- * }
- * ```
- */
 export class NeuratelAI {
   readonly agents: AgentsResource;
-  /** Unified voice surface: phone, web, and WhatsApp voice. */
   readonly voiceSessions: VoiceSessionsResource;
-  /** Unified chat inbox: SMS, WhatsApp, and other text channels. */
   readonly conversations: ConversationsResource;
   readonly phoneNumbers: PhoneNumbersResource;
   readonly campaigns: CampaignsResource;
@@ -44,10 +29,10 @@ export class NeuratelAI {
   readonly billing: BillingResource;
   readonly apiKeys: APIKeysResource;
   readonly integrations: IntegrationsResource;
-  /** Do Not Call directory — check, manage entries, toggle protection. */
   readonly dnc: DNCResource;
-  /** Combined voice + chat KPI dashboard. */
   readonly analytics: AnalyticsResource;
+  readonly workflows: WorkflowsResource;
+  readonly whatsapp: WhatsappResource;
 
   private readonly _client: APIClient;
 
@@ -66,6 +51,8 @@ export class NeuratelAI {
     this.integrations = new IntegrationsResource(this._client);
     this.dnc = new DNCResource(this._client);
     this.analytics = new AnalyticsResource(this._client);
+    this.workflows = new WorkflowsResource(this._client);
+    this.whatsapp = new WhatsappResource(this._client);
   }
 
   toString(): string {

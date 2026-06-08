@@ -10,6 +10,19 @@ import type { APIClient } from "../core.js";
 export class AnalyticsResource {
   constructor(private readonly _client: APIClient) {}
 
+  /**
+   * Fetch the combined voice + chat analytics dashboard.
+   *
+   * @param params - Date range and dimension filters.
+   * @param params.start_date - ISO-8601 lower bound (inclusive).
+   * @param params.end_date - ISO-8601 upper bound (inclusive).
+   * @param params.agent_id - Restrict metrics to a single agent.
+   * @param params.channel - `voice` | `sms` | `whatsapp` (or omit for union).
+   * @param params.direction - `inbound` | `outbound` (or omit for both).
+   * @param params.interval - Bucket size: `hour` | `day` | `week` | `month`.
+   * @returns Dashboard payload (totals, time series, breakdowns).
+   * @throws {APIError} If the platform rejects the request.
+   */
   dashboard(
     params: {
       start_date?: string;

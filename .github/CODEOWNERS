@@ -1,0 +1,6 @@
+# CODEOWNERS
+
+*       @Neuratel-AI
+
+/src/types/_generated.ts              @Neuratel-AI
+/.github/workflows/                   @Neuratel-AI

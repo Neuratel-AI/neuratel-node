@@ -167,4 +167,4 @@ export type BadRequestError = Schemas["BadRequestError"];
 export type NotificationList = Schemas["NotificationListResponse"];
 export type WorkflowList = Schemas["WorkflowListResponse"];
 export type TemplateList = Schemas["TemplateListResponse"];
-export type MCPIntegrationList = Schemas["MCPIntegrationListResponse"];
+export type McpServerList = Schemas["McpServerListResponse"];

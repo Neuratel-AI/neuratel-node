@@ -729,100 +729,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/voices": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List Voices
-         * @description List all available TTS voices with advanced filtering.
-         *
-         *     Supports filtering by:
-         *     - provider: elevenlabs, cartesia
-         *     - category: premade, cloned, professional (ElevenLabs only)
-         *     - language: en, es, fr, etc.
-         *     - gender: male, female, neutral
-         *     - accent: American, British, etc. (ElevenLabs only)
-         *     - age: young, middle_aged, old (ElevenLabs only)
-         *     - use_case: narration, conversational, etc. (ElevenLabs only)
-         *     - search: free text search in name and description
-         */
-        get: operations["list_voices_v1_voices_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/voices/filters": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get Voice Filter Options
-         * @description Get available filter options for the voice dropdown.
-         *     Returns distinct values for each filterable field.
-         */
-        get: operations["get_filter_options_v1_voices_filters_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/voices/{display_id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get Voice
-         * @description Retrieve a specific voice by its display ID (e.g., EL-001, CA-042).
-         */
-        get: operations["get_voice_v1_voices__display_id__get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/voices/sync": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Sync Voices
-         * @description Manually trigger voice sync from ElevenLabs and Cartesia APIs (admin only).
-         *
-         *     This fetches all voices from both providers and updates the database.
-         *     Normally this happens automatically on a weekly schedule.
-         */
-        post: operations["sync_voices_v1_voices_sync_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/numbers": {
         parameters: {
             query?: never;
@@ -923,31 +829,25 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/integrations/mcp": {
+    "/v1/auth-connections": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /**
-         * List MCP Integrations
-         * @description List MCP server integrations for your organization.
-         */
-        get: operations["list_mcp_integrations_v1_integrations_mcp_get"];
+        /** List Auth Connections */
+        get: operations["list_auth_connections_v1_auth_connections_get"];
         put?: never;
-        /**
-         * Create MCP Integration
-         * @description Connect an MCP server to make its tools available to your agents.
-         */
-        post: operations["create_mcp_integration_v1_integrations_mcp_post"];
+        /** Create Auth Connection */
+        post: operations["create_auth_connection_v1_auth_connections_post"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/integrations/mcp/{integration_id}": {
+    "/v1/auth-connections/{auth_id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -955,47 +855,53 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        /**
-         * Update MCP Integration
-         * @description Update an MCP integration's configuration.
-         */
-        put: operations["update_mcp_integration_v1_integrations_mcp__integration_id__put"];
+        /** Update Auth Connection */
+        put: operations["update_auth_connection_v1_auth_connections__auth_id__put"];
         post?: never;
-        /**
-         * Delete MCP Integration
-         * @description Permanently delete an MCP integration.
-         */
-        delete: operations["delete_mcp_integration_v1_integrations_mcp__integration_id__delete"];
+        /** Delete Auth Connection */
+        delete: operations["delete_auth_connection_v1_auth_connections__auth_id__delete"];
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/integrations/mcp/{integration_id}/tools": {
+    "/v1/mcp-servers": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /**
-         * List MCP Tools
-         * @description List available tools from an MCP integration.
-         */
-        get: operations["list_mcp_tools_v1_integrations_mcp__integration_id__tools_get"];
+        /** List MCP Servers */
+        get: operations["list_mcp_servers_v1_mcp_servers_get"];
         put?: never;
-        /**
-         * Refresh MCP Tools
-         * @description Refresh and list tools from an MCP integration (for cache invalidation).
-         */
-        post: operations["list_mcp_tools_v1_integrations_mcp__integration_id__tools_post"];
+        /** Create MCP Server */
+        post: operations["create_mcp_server_v1_mcp_servers_post"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/integrations/mcp/{integration_id}/execute": {
+    "/v1/mcp-servers/{server_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Update MCP Server */
+        put: operations["update_mcp_server_v1_mcp_servers__server_id__put"];
+        post?: never;
+        /** Delete MCP Server */
+        delete: operations["delete_mcp_server_v1_mcp_servers__server_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/mcp-servers/validate": {
         parameters: {
             query?: never;
             header?: never;
@@ -1005,17 +911,20 @@ export interface paths {
         get?: never;
         put?: never;
         /**
-         * Execute MCP Tool
-         * @description Execute a tool on an MCP integration.
+         * Validate an MCP server config without persisting
+         * @description Backs the create modal's Test-then-Save flow.
+         *
+         *     Pass ``inline_headers`` to test before persisting an auth connection,
+         *     or ``auth_connection_id`` to reuse an existing vault entry.
          */
-        post: operations["execute_mcp_tool_v1_integrations_mcp__integration_id__execute_post"];
+        post: operations["validate_mcp_server_v1_mcp_servers_validate_post"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/v1/integrations/mcp/test": {
+    "/v1/mcp-servers/{server_id}/test": {
         parameters: {
             query?: never;
             header?: never;
@@ -1024,11 +933,42 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /**
-         * Test Mcp Configuration
-         * @description Test an MCP configuration without saving it. (Internal use only)
-         */
-        post: operations["test_mcp_configuration_v1_integrations_mcp_test_post"];
+        /** Test connection of a saved MCP server */
+        post: operations["test_mcp_server_v1_mcp_servers__server_id__test_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/mcp-servers/{server_id}/tools": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List tools from a saved MCP server */
+        get: operations["list_mcp_server_tools_v1_mcp_servers__server_id__tools_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/mcp-servers/{server_id}/tools/{tool_name}/execute": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Execute a tool on a saved MCP server */
+        post: operations["execute_mcp_server_tool_v1_mcp_servers__server_id__tools__tool_name__execute_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1216,6 +1156,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/campaigns/coverage": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Variable Coverage For An Agent + Call List Pair
+         * @description For each `{{contact_variable}}` referenced in the agent's prompt, report the fill rate across the call list's active contacts. Used pre-creation by the wizard so the user sees coverage before saving the campaign. Mirrors the math the /start endpoint uses to refuse launches with 0% coverage on any required var.
+         */
+        get: operations["get_campaign_coverage_v1_campaigns_coverage_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/campaigns": {
         parameters: {
             query?: never;
@@ -1319,9 +1279,129 @@ export interface paths {
         put?: never;
         /**
          * Stop Campaign
-         * @description Stop a campaign permanently. Cannot be resumed.
+         * @description Soft halt — cancels queued calls. Restartable via /start, which creates fresh attempts for any contact whose attempts are all in terminal-non-success states. Use /cancel for a terminal kill switch.
          */
         post: operations["stop_campaign_v1_campaigns__campaign_id__stop_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/campaigns/{campaign_id}/resume": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Resume Campaign
+         * @description Resume a paused campaign (paused → active). Requeues the VoiceSessions that pause cancelled.
+         */
+        post: operations["resume_campaign_v1_campaigns__campaign_id__resume_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/campaigns/{campaign_id}/cancel": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Cancel Campaign
+         * @description Terminally cancel a campaign. Cannot be reversed — to reuse the config, duplicate the campaign first.
+         */
+        post: operations["cancel_campaign_v1_campaigns__campaign_id__cancel_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/campaigns/{campaign_id}/stats": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Campaign Stats
+         * @description Aggregate per-campaign call stats. Phase 1 sources from voice_sessions; Phase 3 sources from campaign_attempts.
+         */
+        get: operations["get_campaign_stats_v1_campaigns__campaign_id__stats_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/campaigns/{campaign_id}/retry": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Retry Failed Attempts
+         * @description Re-queue failed / no_answer / voicemail / busy attempts. Creates new CampaignAttempt rows with attempt_number = max+1 and fresh queued VoiceSessions, then enqueues dispatch.
+         */
+        post: operations["retry_campaign_attempts_v1_campaigns__campaign_id__retry_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/campaigns/{campaign_id}/attempts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Campaign Attempts
+         * @description Paginated list of per-contact dial attempts with optional outcome filter. Sources from the campaign_attempts table (Phase 1).
+         */
+        get: operations["list_campaign_attempts_v1_campaigns__campaign_id__attempts_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/campaigns/{campaign_id}/test-webhook": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Test Status Webhook
+         * @description Fires a synthetic ``campaign.test`` payload at the campaign's configured ``status_webhook`` URL so operators can verify their receiver before going live. Distinct event type from real lifecycle webhooks; receivers should ignore this event.
+         */
+        post: operations["test_campaign_status_webhook_v1_campaigns__campaign_id__test_webhook_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1420,21 +1500,20 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/lists/{call_list_id}/bulk-import": {
+    "/v1/lists/import-jobs/{job_id}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get?: never;
-        put?: never;
         /**
-         * Bulk Import Contacts
-         * @description Bulk import contacts from CSV file.
-         *     Rate limited to 10 imports per hour. Max 10,000 rows per file.
+         * Get Contact Import Progress
+         * @description Poll endpoint for the async contact-import path. The FE hits this every ~2s while a job is running. Snapshot lives in Redis for 1h after completion.
          */
-        post: operations["bulk_import_contacts_v1_lists__call_list_id__bulk_import_post"];
+        get: operations["get_contact_import_progress_v1_lists_import_jobs__job_id__get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -1484,6 +1563,66 @@ export interface paths {
          * @description Remove a contact from a call list.
          */
         delete: operations["delete_contact_v1_lists__call_list_id__contacts__contact_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/lists/{call_list_id}/contacts/preview": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Preview Contact Import
+         * @description Step 1 of the two-step CSV import. Parses the uploaded file, detects encoding + delimiter, and returns a suggested header → canonical-field mapping plus a sample of rows. The opaque preview_token in the response is required for POST /import.
+         */
+        post: operations["preview_contact_import_v1_lists__call_list_id__contacts_preview_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/lists/{call_list_id}/contacts/import": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Commit Contact Import
+         * @description Step 2 of the two-step CSV import. Files >= 1000 rows are processed in the background via ARQ; smaller files run inline and return the final result.
+         */
+        post: operations["commit_contact_import_v1_lists__call_list_id__contacts_import_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/lists/{call_list_id}/contacts/bulk": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk-paste Contacts
+         * @description Manual bulk add for the FE bulk-paste tab. Up to 500 rows per call. Phone numbers are normalized to E.164 server-side; rows that fail to parse are returned in the errors array but the rest of the batch still imports.
+         */
+        post: operations["bulk_paste_contacts_v1_lists__call_list_id__contacts_bulk_post"];
+        delete?: never;
         options?: never;
         head?: never;
         patch?: never;
@@ -1915,6 +2054,215 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/billing/admin/credits/adjust": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Adjust Organization Credits (Admin)
+         * @description Add or remove real credits for an organization (Stripe customer balance).
+         */
+        post: operations["adjust_organization_credits_v1_billing_admin_credits_adjust_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/billing/admin/revenue": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Platform Revenue
+         * @description Get platform-wide revenue summary (admin only).
+         *
+         *     Returns total revenue, costs, margin, and margin percentage across all organizations.
+         */
+        get: operations["get_platform_revenue_v1_billing_admin_revenue_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/billing/admin/all-usage": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get All Orgs Usage
+         * @description Get usage summary for all organizations (admin only).
+         *
+         *     Returns per-org usage data for efficient table display.
+         */
+        get: operations["get_all_orgs_usage_v1_billing_admin_all_usage_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/billing/admin/usage/{org_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Org Usage (Admin)
+         * @description Get usage summary for a specific organization (admin only).
+         */
+        get: operations["get_org_usage_admin_v1_billing_admin_usage__org_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/billing/admin/orgs/{organization_id}/overrides": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Org Billing Overrides (Admin)
+         * @description Read DLT compliance flag + custom rate overrides + concurrency.
+         */
+        get: operations["get_org_billing_overrides_v1_billing_admin_orgs__organization_id__overrides_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Update Org Billing Overrides (Admin)
+         * @description Set DLT compliance flag and/or replace custom rate overrides.
+         *
+         *     Note: `custom_rate_overrides` is REPLACED in full when provided —
+         *     pass the merged dict, not a partial. This avoids partial-update
+         *     ambiguity around removing a single key.
+         */
+        patch: operations["update_org_billing_overrides_v1_billing_admin_orgs__organization_id__overrides_patch"];
+        trace?: never;
+    };
+    "/v1/billing/admin/orgs/{organization_id}/pilot/convert": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Convert Pilot to Launch/Scale (Admin)
+         * @description Convert a Pilot org per spec B6 (day 25-30 conversion call).
+         *
+         *     Steps:
+         *       1. Verify org is sku='pilot' AND pilot_status='active'|'live'
+         *       2. Set org.sku = target_sku, pilot_status = 'converted'
+         *       3. Create the new setup_fee invoice via SetupFeeService
+         *       4. Apply $2K Pilot conversion credit against the new invoice
+         */
+        post: operations["convert_pilot_v1_billing_admin_orgs__organization_id__pilot_convert_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/billing/admin/orgs/{organization_id}/pilot/mark-go-live": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Mark Pilot as Live (Admin)
+         * @description Manually flip pilot_go_live_at + status='live'.
+         *
+         *     Idempotent — calling on a non-active pilot is a no-op (returns 409
+         *     so the UI can surface why nothing changed).
+         */
+        post: operations["mark_pilot_go_live_v1_billing_admin_orgs__organization_id__pilot_mark_go_live_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/billing/admin/orgs/{organization_id}/pilot/refund": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Refund Pilot setup fee (Admin)
+         * @description Manually refund the $2K Pilot setup fee + flip status='refunded'.
+         *
+         *     Reuses the same RefundService path the day-31 auto-cancel cron uses.
+         *     No-op if pilot is already in a terminal state ('refunded'|'cancelled')
+         *     — returns 409 so the UI can surface that.
+         */
+        post: operations["refund_pilot_v1_billing_admin_orgs__organization_id__pilot_refund_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/billing/admin/orgs/{organization_id}/pilot/cancel": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Cancel Pilot WITHOUT refund (Admin)
+         * @description Mark pilot as cancelled WITHOUT issuing a refund.
+         *
+         *     Use when ops decide the customer doesn't qualify for the $2K
+         *     refund (e.g. abuse / TOS violation / explicit no-refund waiver).
+         *     Distinct from the refund endpoint which always refunds.
+         */
+        post: operations["cancel_pilot_v1_billing_admin_orgs__organization_id__pilot_cancel_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/dnc/check": {
         parameters: {
             query?: never;
@@ -1998,6 +2346,47 @@ export interface paths {
         head?: never;
         /** Toggle DNC protection / auto-opt-out detection for this org */
         patch: operations["update_dnc_settings_v1_dnc_settings_patch"];
+        trace?: never;
+    };
+    "/v1/billing/admin/dnc": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List ALL DNC entries (Admin)
+         * @description Audit fix L6: pagination via skip/limit. Without `skip`, the
+         *     AdminDnc UI silently truncated once `platform_seed` grew past 500
+         *     entries (regulator do-not-call lists ingested at scale). Returns
+         *     one page at a time, ordered by added_at desc.
+         */
+        get: operations["admin_list_dnc_v1_billing_admin_dnc_get"];
+        put?: never;
+        /** Add a platform-wide DNC entry (Admin) */
+        post: operations["admin_add_dnc_v1_billing_admin_dnc_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/billing/admin/dnc/{entry_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Soft-expire any DNC entry (Admin) */
+        delete: operations["admin_remove_dnc_v1_billing_admin_dnc__entry_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
         trace?: never;
     };
     "/v1/webhooks": {
@@ -2508,309 +2897,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/v1/organizations/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List organizations
-         * @description List all organizations (super admin only)
-         */
-        get: operations["list_organizations_v1_organizations__get"];
-        put?: never;
-        /**
-         * Create organization
-         * @description Create a new organization.
-         */
-        post: operations["create_organization_v1_organizations__post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/organizations/me": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get my organization
-         * @description Get the current user's organization.
-         */
-        get: operations["get_my_organization_v1_organizations_me_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/organizations/{org_id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get organization by ID
-         * @description Get organization by database UUID.
-         *
-         *     - Super admin: can access any org
-         *     - Regular user: can only access their own org
-         */
-        get: operations["get_organization_by_id_v1_organizations__org_id__get"];
-        put?: never;
-        post?: never;
-        /**
-         * Delete organization
-         * @description Delete an organization. Super admin only.
-         */
-        delete: operations["delete_organization_v1_organizations__org_id__delete"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/organizations/{org_id}/logo": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Upload organization logo
-         * @description Upload organization logo.
-         *
-         *     Accepts image files (jpg, jpeg, png, gif, webp).
-         */
-        post: operations["upload_logo_v1_organizations__org_id__logo_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/organizations/{org_id}/permissions": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /**
-         * Update organization permissions
-         * @description Update organization permissions and settings.
-         *
-         *     Note: This updates business settings stored in our DB.
-         */
-        patch: operations["update_organization_permissions_v1_organizations__org_id__permissions_patch"];
-        trace?: never;
-    };
-    "/v1/organizations/{org_id}/credentials": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        /**
-         * Update organization credentials
-         * @description Update organization API credentials.
-         *
-         *     Only super admins can update credentials for any organization.
-         *     Org members with manage_credentials permission can update their own org.
-         */
-        put: operations["update_organization_credentials_v1_organizations__org_id__credentials_put"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/organizations/{org_id}/members": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List organization members
-         * @description List all members of the organization. Requires admin permissions.
-         */
-        get: operations["list_members_v1_organizations__org_id__members_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/organizations/{org_id}/invitations": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List pending invitations
-         * @description List all pending invitations for the organization. Requires admin permissions.
-         */
-        get: operations["list_invitations_v1_organizations__org_id__invitations_get"];
-        put?: never;
-        /**
-         * Invite a team member
-         * @description Send an invitation to join the organization. Requires admin permissions.
-         */
-        post: operations["invite_member_v1_organizations__org_id__invitations_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/organizations/{org_id}/invitations/{invitation_id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        /**
-         * Revoke an invitation
-         * @description Revoke a pending invitation. Requires admin permissions.
-         */
-        delete: operations["revoke_invitation_v1_organizations__org_id__invitations__invitation_id__delete"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/organizations/{org_id}/members/{user_id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        /**
-         * Remove a team member
-         * @description Remove a member from the organization. Requires admin permissions.
-         */
-        delete: operations["remove_member_v1_organizations__org_id__members__user_id__delete"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/organizations/{org_id}/members/{user_id}/role": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /**
-         * Update member role
-         * @description Update a member's role in the organization. Requires admin permissions.
-         */
-        patch: operations["update_member_role_v1_organizations__org_id__members__user_id__role_patch"];
-        trace?: never;
-    };
-    "/v1/organizations/invitations/{invitation_id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get invitation details
-         * @description Get invitation details by ID (public route — no auth required).
-         *     Returns org name, invitee email, and whether user already has an account.
-         */
-        get: operations["get_invitation_v1_organizations_invitations__invitation_id__get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/organizations/invitations/{invitation_id}/register-and-accept": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Register and accept invitation
-         * @description Register a new user and accept an organization invitation in one step (new users only).
-         */
-        post: operations["register_and_accept_invitation_v1_organizations_invitations__invitation_id__register_and_accept_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/organizations/invitations/{invitation_id}/accept": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Accept invitation
-         * @description Accept an invitation (authenticated user whose email matches the invitee).
-         */
-        post: operations["accept_invitation_v1_organizations_invitations__invitation_id__accept_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/v1/api-keys/master": {
         parameters: {
             query?: never;
@@ -2979,228 +3065,6 @@ export interface paths {
         put?: never;
         post?: never;
         delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/status/public": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get Public Status
-         * @description Public endpoint - returns full status page data
-         *     No authentication required
-         */
-        get: operations["get_public_status_v1_status_public_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/status/report-incident": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Report Incident
-         * @description Allow confirmed subscribers to report incidents using templates.
-         */
-        post: operations["report_incident_v1_status_report_incident_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/status/health-check": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Run Health Checks
-         * @description Run real-time health checks on all services.
-         *     Returns current status of each service.
-         *     Names MUST match database component names exactly for latency updates.
-         */
-        get: operations["run_health_checks_v1_status_health_check_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/status/subscribe": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Subscribe To Updates
-         * @description Subscribe email to status updates (requires email confirmation)
-         */
-        post: operations["subscribe_to_updates_v1_status_subscribe_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/status/subscribe/slack": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Subscribe Slack Webhook
-         * @description Subscribe a Slack channel to status updates via webhook.
-         *
-         *     How to get your webhook URL:
-         *     1. Go to https://api.slack.com/apps
-         *     2. Create a new app (or select existing) → "From scratch"
-         *     3. Go to "Incoming Webhooks" → Enable
-         *     4. Click "Add New Webhook to Workspace"
-         *     5. Select the channel where you want notifications
-         *     6. Copy the webhook URL and paste it here
-         *
-         *     Your channel will receive rich formatted notifications whenever:
-         *     - New incidents are created
-         *     - Incidents are updated or resolved
-         *     - Maintenance is scheduled, started, or completed
-         */
-        post: operations["subscribe_slack_webhook_v1_status_subscribe_slack_post"];
-        /**
-         * Unsubscribe Slack Webhook
-         * @description Unsubscribe a Slack channel from status updates
-         */
-        delete: operations["unsubscribe_slack_webhook_v1_status_subscribe_slack_delete"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/notifications": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * List Notifications
-         * @description List notifications for the current organization.
-         *
-         *     Returns paginated notifications sorted by created_at descending (newest first).
-         */
-        get: operations["list_notifications_v1_notifications_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/notifications/unread-count": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Get Unread Count
-         * @description Get the count of unread notifications for the current organization.
-         */
-        get: operations["get_unread_count_v1_notifications_unread_count_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/notifications/{notification_id}/read": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /**
-         * Mark Notification Read
-         * @description Mark a specific notification as read.
-         */
-        patch: operations["mark_notification_read_v1_notifications__notification_id__read_patch"];
-        trace?: never;
-    };
-    "/v1/notifications/read-all": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Mark All Read
-         * @description Mark all notifications as read for the current organization.
-         */
-        post: operations["mark_all_read_v1_notifications_read_all_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/v1/notifications/{notification_id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        /**
-         * Delete Notification
-         * @description Delete a notification.
-         */
-        delete: operations["delete_notification_v1_notifications__notification_id__delete"];
         options?: never;
         head?: never;
         patch?: never;
@@ -3514,6 +3378,29 @@ export interface components {
             total_active: number;
             /** Timestamp */
             timestamp: string;
+        };
+        /**
+         * AddToDncConfig
+         * @description Configuration for the in-call ``add_to_dnc`` agent tool.
+         *
+         *     When enabled, the LLM gets an ``add_to_dnc`` callable it can invoke
+         *     when the user explicitly asks to never be called again. The tool
+         *     POSTs to Platform's ``/v1/webhooks/agent/dnc-add`` and the backend
+         *     looks up the consumer's E.164 from the voice_session row, so the
+         *     LLM never handles the raw phone number directly.
+         *
+         *     Whether or not this in-call tool is enabled, every finished call's
+         *     transcript is also scanned post-hoc by ``infer_dnc_from_session_report``
+         *     (gpt-5.4-nano classifier) — the in-call tool is a UX win (faster
+         *     block) but defense-in-depth lives in the post-call inference job.
+         */
+        AddToDncConfig: {
+            /**
+             * Enabled
+             * @description Enable in-call DNC opt-out tool
+             * @default false
+             */
+            enabled: boolean;
         };
         /**
          * AdminAdjustCreditsRequest
@@ -4449,16 +4336,13 @@ export interface components {
          * AnalysisPlan
          * @description Post-call analysis configuration.
          *
-         *     Automatically summarizes and evaluates every call for insights and quality control.
-         *     Results are attached to the call record and stored in session_reports.
+         *     Per-feature presence-based gating: each analysis runs only when its
+         *     prompt / schema / flag is populated. The previous master ``enabled``
+         *     toggle was removed in May 2026 — it was a footgun (users would set
+         *     summaryPrompt and still get nothing because they didn't notice the
+         *     master switch was off).
          */
         AnalysisPlan: {
-            /**
-             * Enabled
-             * @description Master switch for the new analysis plan. When false, no analysisPlan-driven analysis runs.
-             * @default false
-             */
-            enabled: boolean;
             /**
              * Summaryprompt
              * @description Custom prompt for call summary. Empty string disables summary.
@@ -4606,6 +4490,84 @@ export interface components {
             message: string;
             /** Component Ids */
             component_ids?: string[];
+        };
+        /**
+         * AuthConnectionCreate
+         * @description Create a new credential vault entry.
+         *
+         *     For ``kind="bearer"``: pass the raw token in ``token``.
+         *     For ``kind="headers"``: pass a dict in ``headers``.
+         *     Exactly one of the two must be supplied; ``_kind_secret_match`` raises a
+         *     422 with field-level info before the request reaches the service.
+         */
+        AuthConnectionCreate: {
+            /** Name */
+            name: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "bearer" | "headers";
+            /** Token */
+            token?: string | null;
+            /** Headers */
+            headers?: {
+                [key: string]: string;
+            } | null;
+        };
+        /** AuthConnectionListResponse */
+        AuthConnectionListResponse: {
+            /** Results */
+            results: components["schemas"]["AuthConnectionResponse"][];
+        };
+        /**
+         * AuthConnectionResponse
+         * @description Response shape — secret value never leaves the server.
+         *
+         *     For ``kind="bearer"`` the response sets ``has_token=True`` once a
+         *     token is stored; for ``kind="headers"`` ``header_keys`` lists the
+         *     keys (never values).
+         */
+        AuthConnectionResponse: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * Organization Id
+             * Format: uuid
+             */
+            organization_id: string;
+            /** Name */
+            name: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "bearer" | "headers";
+            /**
+             * Has Token
+             * @default false
+             */
+            has_token: boolean;
+            /** Header Keys */
+            header_keys?: string[];
+            /** Created At */
+            created_at?: string | null;
+            /** Updated At */
+            updated_at?: string | null;
+        };
+        /** AuthConnectionUpdate */
+        AuthConnectionUpdate: {
+            /** Name */
+            name?: string | null;
+            /** Token */
+            token?: string | null;
+            /** Headers */
+            headers?: {
+                [key: string]: string;
+            } | null;
         };
         /**
          * AuthContextResponse
@@ -4939,6 +4901,52 @@ export interface components {
          */
         BuiltinAudioClip: "city_ambience" | "forest_ambience" | "office_ambience" | "crowded_room" | "keyboard_typing" | "keyboard_typing_2" | "hold_music";
         /**
+         * BulkPasteContactRow
+         * @description One pasted-phone row in the manual bulk-paste flow.
+         */
+        BulkPasteContactRow: {
+            /** Phone Number */
+            phone_number: string;
+            /**
+             * Contact Data
+             * @description Optional variables for this contact (e.g. {"name": "Bilal"}). Reserved keys ``phone_number`` and ``status`` are rejected.
+             */
+            contact_data?: {
+                [key: string]: unknown;
+            };
+        };
+        /**
+         * BulkPasteContactsRequest
+         * @description POST /call-lists/{id}/contacts/bulk — manual bulk-paste from FE.
+         */
+        BulkPasteContactsRequest: {
+            /** Phones */
+            phones: components["schemas"]["BulkPasteContactRow"][];
+        };
+        /**
+         * BulkPasteContactsResponse
+         * @description Result of /contacts/bulk.
+         */
+        BulkPasteContactsResponse: {
+            /**
+             * Imported Count
+             * @default 0
+             */
+            imported_count: number;
+            /**
+             * Skipped Count
+             * @default 0
+             */
+            skipped_count: number;
+            /**
+             * Dnc Blocked Count
+             * @default 0
+             */
+            dnc_blocked_count: number;
+            /** Errors */
+            errors?: components["schemas"]["ContactImportProgressError"][];
+        };
+        /**
          * CallDurationConfig
          * @description Configuration for maximum call duration.
          */
@@ -4985,83 +4993,8 @@ export interface components {
              */
             phone_number: string;
             /**
-             * First Name
-             * @description Contact first name
-             */
-            first_name?: string | null;
-            /**
-             * Last Name
-             * @description Contact last name
-             */
-            last_name?: string | null;
-            /**
-             * Email
-             * @description Contact email
-             */
-            email?: string | null;
-            /**
-             * Company
-             * @description Contact company
-             */
-            company?: string | null;
-            /**
-             * Subject
-             * @description Call subject or purpose
-             */
-            subject?: string | null;
-            /**
-             * Website
-             * @description Company website
-             */
-            website?: string | null;
-            /**
-             * Revenue
-             * @description Company revenue
-             */
-            revenue?: string | null;
-            /**
-             * Address
-             * @description Contact address
-             */
-            address?: string | null;
-            /**
-             * City
-             * @description Contact city
-             */
-            city?: string | null;
-            /**
-             * Country
-             * @description Contact country
-             */
-            country?: string | null;
-            /**
-             * Employees
-             * @description Company employee count
-             */
-            employees?: string | null;
-            /**
-             * Industry
-             * @description Company industry
-             */
-            industry?: string | null;
-            /**
-             * Profile
-             * @description Contact profile/notes
-             */
-            profile?: string | null;
-            /**
-             * Current Time
-             * @description Current timestamp
-             */
-            current_time?: string | null;
-            /**
-             * Name
-             * @description Full contact name (computed)
-             */
-            name?: string | null;
-            /**
              * Contact Data
-             * @description Additional dynamic contact data
+             * @description Arbitrary key/value map. Every key becomes a ``{{key}}`` variable available to the agent prompt at call time. Reserved keys ``phone_number`` and ``status`` are rejected (they would override the contact's real columns).
              */
             contact_data?: {
                 [key: string]: unknown;
@@ -5069,7 +5002,11 @@ export interface components {
         };
         /**
          * CallListContactResponse
-         * @description Schema for call list contact responses
+         * @description Schema for call list contact responses.
+         *
+         *     Phase 1 dropped the `call_count`, `last_called`, `call_result` fields —
+         *     per-attempt outcomes now live on campaign_attempts and are exposed via
+         *     GET /v1/campaigns/{id}/attempts.
          */
         CallListContactResponse: {
             /**
@@ -5078,83 +5015,8 @@ export interface components {
              */
             phone_number: string;
             /**
-             * First Name
-             * @description Contact first name
-             */
-            first_name?: string | null;
-            /**
-             * Last Name
-             * @description Contact last name
-             */
-            last_name?: string | null;
-            /**
-             * Email
-             * @description Contact email
-             */
-            email?: string | null;
-            /**
-             * Company
-             * @description Contact company
-             */
-            company?: string | null;
-            /**
-             * Subject
-             * @description Call subject or purpose
-             */
-            subject?: string | null;
-            /**
-             * Website
-             * @description Company website
-             */
-            website?: string | null;
-            /**
-             * Revenue
-             * @description Company revenue
-             */
-            revenue?: string | null;
-            /**
-             * Address
-             * @description Contact address
-             */
-            address?: string | null;
-            /**
-             * City
-             * @description Contact city
-             */
-            city?: string | null;
-            /**
-             * Country
-             * @description Contact country
-             */
-            country?: string | null;
-            /**
-             * Employees
-             * @description Company employee count
-             */
-            employees?: string | null;
-            /**
-             * Industry
-             * @description Company industry
-             */
-            industry?: string | null;
-            /**
-             * Profile
-             * @description Contact profile/notes
-             */
-            profile?: string | null;
-            /**
-             * Current Time
-             * @description Current timestamp
-             */
-            current_time?: string | null;
-            /**
-             * Name
-             * @description Full contact name (computed)
-             */
-            name?: string | null;
-            /**
              * Contact Data
-             * @description Additional dynamic contact data
+             * @description Arbitrary key/value map. Every key becomes a ``{{key}}`` variable available to the agent prompt at call time. Reserved keys ``phone_number`` and ``status`` are rejected (they would override the contact's real columns).
              */
             contact_data?: {
                 [key: string]: unknown;
@@ -5180,15 +5042,6 @@ export interface components {
              */
             is_active: boolean;
             /**
-             * Call Count
-             * @default 0
-             */
-            call_count: number;
-            /** Last Called */
-            last_called?: string | null;
-            /** Call Result */
-            call_result?: string | null;
-            /**
              * Created At
              * Format: date-time
              */
@@ -5198,7 +5051,7 @@ export interface components {
         };
         /**
          * CallListContactUpdate
-         * @description Schema for updating call list contacts with extended fields
+         * @description Schema for updating call list contacts.
          */
         CallListContactUpdate: {
             /**
@@ -5207,87 +5060,17 @@ export interface components {
              */
             phone_number?: string | null;
             /**
-             * First Name
-             * @description Contact first name
-             */
-            first_name?: string | null;
-            /**
-             * Last Name
-             * @description Contact last name
-             */
-            last_name?: string | null;
-            /**
-             * Email
-             * @description Contact email
-             */
-            email?: string | null;
-            /**
-             * Company
-             * @description Contact company
-             */
-            company?: string | null;
-            /**
-             * Subject
-             * @description Call subject or purpose
-             */
-            subject?: string | null;
-            /**
-             * Website
-             * @description Company website
-             */
-            website?: string | null;
-            /**
-             * Revenue
-             * @description Company revenue
-             */
-            revenue?: string | null;
-            /**
-             * Address
-             * @description Contact address
-             */
-            address?: string | null;
-            /**
-             * City
-             * @description Contact city
-             */
-            city?: string | null;
-            /**
-             * Country
-             * @description Contact country
-             */
-            country?: string | null;
-            /**
-             * Employees
-             * @description Company employee count
-             */
-            employees?: string | null;
-            /**
-             * Industry
-             * @description Company industry
-             */
-            industry?: string | null;
-            /**
-             * Profile
-             * @description Contact profile/notes
-             */
-            profile?: string | null;
-            /**
-             * Status
-             * @description Contact status: active, dnc, invalid, or called
-             */
-            status?: string | null;
-            /**
-             * Name
-             * @description Full contact name
-             */
-            name?: string | null;
-            /**
              * Contact Data
-             * @description Additional contact data
+             * @description Replace the contact's variable map. Pass {} to clear; omit to leave unchanged. Reserved keys ``phone_number`` and ``status`` are rejected.
              */
             contact_data?: {
                 [key: string]: unknown;
             } | null;
+            /**
+             * Status
+             * @description Contact status: active, dnc, invalid, opted_out, or called (legacy)
+             */
+            status?: string | null;
             /**
              * Is Active
              * @description Contact active status
@@ -5628,22 +5411,98 @@ export interface components {
             asr_latency_ms_p50: number;
         };
         /**
+         * CampaignAttemptListResponse
+         * @description Paginated list of CampaignAttempt rows for GET /campaigns/{id}/attempts.
+         */
+        CampaignAttemptListResponse: {
+            /** Results */
+            results: components["schemas"]["CampaignAttemptResponse"][];
+            metadata: components["schemas"]["PaginationMetadata"];
+        };
+        /**
+         * CampaignAttemptResponse
+         * @description One attempt to dial a single contact.
+         *
+         *     Phase 1 introduces this as the per-attempt progress primitive.
+         */
+        CampaignAttemptResponse: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * Campaign Id
+             * Format: uuid
+             */
+            campaign_id: string;
+            /**
+             * Contact Id
+             * Format: uuid
+             */
+            contact_id: string;
+            /** Attempt Number */
+            attempt_number: number;
+            /** Outcome */
+            outcome: string;
+            /** Error Message */
+            error_message?: string | null;
+            /** Scheduled For */
+            scheduled_for?: string | null;
+            /** Dispatched At */
+            dispatched_at?: string | null;
+            /** Completed At */
+            completed_at?: string | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+        };
+        /**
          * CampaignConfig
          * @description Campaign dialer configuration.
+         *
+         *     Concurrency is governed by the org-level cap (Organization.sku →
+         *     effective_max_concurrent_calls). Per-campaign concurrency / per-minute
+         *     knobs were removed in the May-2026 dispatcher refactor — they
+         *     duplicated the org cap and silently throttled high-Scale orgs to a
+         *     legacy default of 5 (or whatever the wizard slider was set to).
          */
         CampaignConfig: {
-            /** Max Concurrent Calls */
-            max_concurrent_calls?: number | null;
             /** Call Timeout Seconds */
             call_timeout_seconds?: number | null;
             /** Retry Attempts */
             retry_attempts?: number | null;
             /** Retry Delay Seconds */
             retry_delay_seconds?: number | null;
-            /** Calls Per Minute */
-            calls_per_minute?: number | null;
-            /** Calls Per Hour */
-            calls_per_hour?: number | null;
+            /** Retry Outcomes */
+            retry_outcomes?: string[] | null;
+        };
+        /**
+         * CampaignCoverageResponse
+         * @description Per-required-variable fill rate across a call list's active contacts.
+         *
+         *     Powers the wizard Step 1 coverage report and mirrors the math the
+         *     /start hard-block uses. ``blocking_zero_pct`` is the slice that
+         *     would refuse a launch.
+         */
+        CampaignCoverageResponse: {
+            /** Required Variables */
+            required_variables: string[];
+            /** Total Contacts */
+            total_contacts: number;
+            /** Per Variable */
+            per_variable: {
+                [key: string]: components["schemas"]["VariableCoverageStat"];
+            };
+            /** Blocking Zero Pct */
+            blocking_zero_pct: string[];
         };
         /**
          * CampaignListResponse
@@ -5739,6 +5598,83 @@ export interface components {
              * @default 0
              */
             avg_duration_sec: number;
+        };
+        /**
+         * CampaignRetryRequest
+         * @description Body for POST /campaigns/{id}/retry — re-dial failed attempts.
+         *
+         *     Both filters are optional:
+         *     - contact_ids: restrict the retry to these contacts only.
+         *     - outcomes:    only retry attempts whose latest outcome is in this set.
+         *                    Default: failed, no_answer, voicemail, busy.
+         *
+         *     Creates one new CampaignAttempt per matched contact with
+         *     attempt_number = max(prior attempts) + 1, then enqueues dispatch.
+         */
+        CampaignRetryRequest: {
+            /**
+             * Contact Ids
+             * @description Restrict retry to these contacts (default: all matched)
+             */
+            contact_ids?: string[] | null;
+            /**
+             * Outcomes
+             * @description Only retry attempts in these outcomes. Default: failed, no_answer, voicemail, busy.
+             */
+            outcomes?: string[] | null;
+        };
+        /**
+         * CampaignRetryResponse
+         * @description Result of POST /campaigns/{id}/retry.
+         */
+        CampaignRetryResponse: {
+            /**
+             * Requeued
+             * @description Number of new attempts created
+             */
+            requeued: number;
+            /**
+             * Contacts
+             * @description Contact IDs that were retried
+             */
+            contacts?: string[];
+        };
+        /**
+         * CampaignTestWebhookResponse
+         * @description Result of POST /campaigns/{id}/test-webhook.
+         *
+         *     The endpoint fires a synthetic ``campaign.test`` payload against the
+         *     campaign's configured ``status_webhook`` URL so the operator can
+         *     verify their receiver before going live. Receivers should ignore
+         *     this event type — it's distinct from real lifecycle events
+         *     (``campaign.completed``, ``campaign.stopped``, ``campaign.failed``).
+         */
+        CampaignTestWebhookResponse: {
+            /**
+             * Success
+             * @description True if the receiver responded 2xx.
+             */
+            success: boolean;
+            /**
+             * Status Code
+             * @description HTTP status code from the receiver.
+             */
+            status_code?: number | null;
+            /**
+             * Response Body
+             * @description Truncated response body (first 500 chars).
+             */
+            response_body?: string | null;
+            /**
+             * Latency Ms
+             * @description Round-trip time in milliseconds.
+             */
+            latency_ms: number;
+            /**
+             * Error
+             * @description Set when the request failed before getting a response.
+             */
+            error?: string | null;
         };
         /**
          * CartesiaEmotion
@@ -6176,6 +6112,187 @@ export interface components {
             available: number;
             /** Unlimited */
             unlimited: boolean;
+        };
+        /**
+         * ContactImportCommitRequest
+         * @description Body for POST /call-lists/{id}/contacts/import.
+         *
+         *     ``mapping`` overrides ``suggested_mapping`` from the preview step.
+         *     Headers omitted from ``mapping`` are imported into ``contact_data``
+         *     so dynamic-variable agents can still address them.
+         */
+        ContactImportCommitRequest: {
+            /** Preview Token */
+            preview_token: string;
+            /** Mapping */
+            mapping?: {
+                [key: string]: string;
+            };
+            /**
+             * Run Async
+             * @description Force the background path. Auto-on for files >1000 rows; the FE may also opt in to background mode for smaller files to keep the UI responsive.
+             * @default false
+             */
+            run_async: boolean;
+        };
+        /**
+         * ContactImportCommitResponse
+         * @description One of two shapes depending on ``run_async``:
+         *
+         *     - sync: returns the final result inline.
+         *     - async: returns ``{job_id, status: "queued"}`` and the FE polls
+         *       GET /call-lists/import-jobs/{job_id} for progress.
+         */
+        ContactImportCommitResponse: {
+            /**
+             * Job Id
+             * @description Set when run_async is true; poll for progress.
+             */
+            job_id?: string | null;
+            /**
+             * Status
+             * @description queued | completed | failed
+             */
+            status: string;
+            /**
+             * Imported Count
+             * @default 0
+             */
+            imported_count: number;
+            /**
+             * Skipped Count
+             * @default 0
+             */
+            skipped_count: number;
+            /**
+             * Dnc Blocked Count
+             * @default 0
+             */
+            dnc_blocked_count: number;
+            /** Errors */
+            errors?: {
+                [key: string]: unknown;
+            }[];
+        };
+        /**
+         * ContactImportInvalidRow
+         * @description One bad row surfaced in the preview screen so the user can fix
+         *     their CSV before committing the import.
+         */
+        ContactImportInvalidRow: {
+            /**
+             * Row Number
+             * @description 1-indexed row number, header = row 1
+             */
+            row_number: number;
+            /**
+             * Reason
+             * @description Why the row failed validation
+             */
+            reason: string;
+            /**
+             * Raw
+             * @description Raw cell values for this row
+             */
+            raw?: {
+                [key: string]: string;
+            };
+        };
+        /**
+         * ContactImportPreviewResponse
+         * @description What POST /call-lists/{id}/contacts/preview returns.
+         *
+         *     The FE renders a column-mapping screen using ``detected_headers`` +
+         *     ``suggested_mapping``. The user can override any mapping, then POSTs
+         *     back to /import with the ``preview_token``.
+         */
+        ContactImportPreviewResponse: {
+            /**
+             * Preview Token
+             * @description Opaque token to pass to /import. TTL ~10 minutes.
+             */
+            preview_token: string;
+            /** Detected Headers */
+            detected_headers: string[];
+            /**
+             * Suggested Mapping
+             * @description raw_header → canonical_field mapping derived from header aliases.
+             */
+            suggested_mapping?: {
+                [key: string]: string;
+            };
+            /**
+             * Sample Rows
+             * @description First 10 rows with raw cell values.
+             */
+            sample_rows?: {
+                [key: string]: string;
+            }[];
+            /**
+             * Invalid Rows Preview
+             * @description First 10 invalid rows with reasons.
+             */
+            invalid_rows_preview?: components["schemas"]["ContactImportInvalidRow"][];
+            /** Total Rows */
+            total_rows: number;
+            /** Encoding */
+            encoding: string;
+            /** Delimiter */
+            delimiter: string;
+        };
+        /** ContactImportProgressError */
+        ContactImportProgressError: {
+            /** Row Number */
+            row_number: number;
+            /**
+             * Phone
+             * @default
+             */
+            phone: string;
+            /** Reason */
+            reason: string;
+        };
+        /**
+         * ContactImportProgressResponse
+         * @description Progress snapshot for the GET /call-lists/import-jobs/{job_id} poll.
+         */
+        ContactImportProgressResponse: {
+            /**
+             * Status
+             * @description queued | running | completed | failed
+             */
+            status: string;
+            /**
+             * Total
+             * @default 0
+             */
+            total: number;
+            /**
+             * Processed
+             * @default 0
+             */
+            processed: number;
+            /**
+             * Imported
+             * @default 0
+             */
+            imported: number;
+            /**
+             * Skipped
+             * @default 0
+             */
+            skipped: number;
+            /**
+             * Dnc Blocked
+             * @default 0
+             */
+            dnc_blocked: number;
+            /** Errors */
+            errors?: components["schemas"]["ContactImportProgressError"][];
+            /** Completed At */
+            completed_at?: string | null;
+            /** Error Summary */
+            error_summary?: string | null;
         };
         /**
          * ContributionDataPoint
@@ -7608,209 +7725,6 @@ export interface components {
             total_response_ms?: number | null;
         };
         /**
-         * MCPIntegrationCreate
-         * @description Connect an MCP server to make its tools available to your agents.
-         *
-         *     Organization is determined from your API key - no need to specify.
-         */
-        MCPIntegrationCreate: {
-            /** Name */
-            name: string;
-            /** Description */
-            description?: string | null;
-            /**
-             * Server Url
-             * Format: uri
-             */
-            server_url: string;
-            /**
-             * Protocol
-             * @default http
-             * @enum {string}
-             */
-            protocol: "http" | "sse";
-            /**
-             * Timeout Seconds
-             * @default 20
-             */
-            timeout_seconds: number;
-            /** Headers */
-            headers?: {
-                [key: string]: string;
-            } | null;
-            /** Metadata */
-            metadata?: {
-                [key: string]: unknown;
-            } | null;
-        };
-        /**
-         * MCPIntegrationListResponse
-         * @description Paginated list of MCP integrations.
-         *
-         *     Standardized pagination format:
-         *     - results: List of integrations
-         *     - metadata: Pagination info (skip, limit, total, has_more, count)
-         * @example {
-         *       "metadata": {
-         *         "count": 2,
-         *         "has_more": false,
-         *         "limit": 20,
-         *         "skip": 0,
-         *         "total": 2
-         *       },
-         *       "results": [
-         *         {
-         *           "id": "cc0e8400-e29b-41d4-a716-446655440007",
-         *           "name": "Weather API",
-         *           "organization_id": "660e8400-e29b-41d4-a716-446655440001"
-         *         },
-         *         {
-         *           "id": "dd0e8400-e29b-41d4-a716-446655440008",
-         *           "name": "Calendar Integration",
-         *           "organization_id": "660e8400-e29b-41d4-a716-446655440001"
-         *         }
-         *       ]
-         *     }
-         */
-        MCPIntegrationListResponse: {
-            /** Results */
-            results: components["schemas"]["MCPIntegrationResponse"][];
-            metadata: components["schemas"]["PaginationMetadata"];
-        };
-        /**
-         * MCPIntegrationResponse
-         * @description MCP integration response - includes all fields from base plus identifiers
-         * @example {
-         *       "description": "Get weather data for any location",
-         *       "id": "cc0e8400-e29b-41d4-a716-446655440007",
-         *       "name": "Weather API",
-         *       "organization_id": "660e8400-e29b-41d4-a716-446655440001",
-         *       "protocol": "sse",
-         *       "server_url": "https://mcp.example.com/weather",
-         *       "timeout_seconds": 30
-         *     }
-         */
-        MCPIntegrationResponse: {
-            /** Name */
-            name: string;
-            /** Description */
-            description?: string | null;
-            /**
-             * Server Url
-             * Format: uri
-             */
-            server_url: string;
-            /**
-             * Protocol
-             * @default http
-             * @enum {string}
-             */
-            protocol: "http" | "sse";
-            /**
-             * Timeout Seconds
-             * @default 20
-             */
-            timeout_seconds: number;
-            /** Headers */
-            headers?: {
-                [key: string]: string;
-            } | null;
-            /** Metadata */
-            metadata?: {
-                [key: string]: unknown;
-            } | null;
-            /**
-             * Id
-             * Format: uuid
-             */
-            id: string;
-            /**
-             * Organization Id
-             * Format: uuid
-             */
-            organization_id: string;
-            /** Last Test Status */
-            last_test_status?: string | null;
-            /** Last Test At */
-            last_test_at?: string | null;
-            /** Last Test Error */
-            last_test_error?: string | null;
-            /** Created At */
-            created_at?: string | null;
-            /** Updated At */
-            updated_at?: string | null;
-        };
-        /** MCPIntegrationTestRequest */
-        MCPIntegrationTestRequest: {
-            /** Integration Id */
-            integration_id?: string | null;
-            /** Server Url */
-            server_url?: string | null;
-            /**
-             * Protocol
-             * @default http
-             */
-            protocol: ("http" | "sse") | null;
-            /**
-             * Timeout Seconds
-             * @default 20
-             */
-            timeout_seconds: number | null;
-            /** Headers */
-            headers?: {
-                [key: string]: string;
-            } | null;
-            /** Metadata */
-            metadata?: {
-                [key: string]: unknown;
-            } | null;
-            /** Payload */
-            payload?: {
-                [key: string]: unknown;
-            } | null;
-        };
-        /** MCPIntegrationTestResponse */
-        MCPIntegrationTestResponse: {
-            /** Status */
-            status: string;
-            /** Status Code */
-            status_code: number | null;
-            /** Body */
-            body?: unknown | null;
-            /** Message */
-            message?: string | null;
-            /** Steps */
-            steps?: {
-                [key: string]: {
-                    [key: string]: unknown;
-                };
-            } | null;
-        };
-        /** MCPIntegrationUpdate */
-        MCPIntegrationUpdate: {
-            /** Name */
-            name?: string | null;
-            /** Description */
-            description?: string | null;
-            /** Server Url */
-            server_url?: string | null;
-            /**
-             * Protocol
-             * @default http
-             */
-            protocol: ("http" | "sse") | null;
-            /** Timeout Seconds */
-            timeout_seconds?: number | null;
-            /** Headers */
-            headers?: {
-                [key: string]: string;
-            } | null;
-            /** Metadata */
-            metadata?: {
-                [key: string]: unknown;
-            } | null;
-        };
-        /**
          * MaintenanceCreate
          * @description Request body for creating maintenance
          */
@@ -7915,27 +7829,190 @@ export interface components {
             /** Marked Count */
             marked_count: number;
         };
+        /** McpExecuteRequest */
+        McpExecuteRequest: {
+            /** Arguments */
+            arguments?: {
+                [key: string]: unknown;
+            };
+        };
+        /** McpExecuteResult */
+        McpExecuteResult: {
+            /** Success */
+            success: boolean;
+            /** Tool Name */
+            tool_name: string;
+            /** Arguments */
+            arguments?: {
+                [key: string]: unknown;
+            };
+            /** Content */
+            content?: unknown[];
+            /**
+             * Is Error
+             * @default false
+             */
+            is_error: boolean;
+            /** Error */
+            error?: string | null;
+            /** Error Type */
+            error_type?: string | null;
+        };
         /**
-         * McpServerRef
-         * @description Reference to an MCP server integration.
+         * McpProbeResult
+         * @description Outcome of a connect + ``tools/list`` probe.
          */
-        McpServerRef: {
+        McpProbeResult: {
+            /** Success */
+            success: boolean;
+            /** Server Info */
+            server_info?: {
+                [key: string]: unknown;
+            } | null;
+            /** Tools */
+            tools?: components["schemas"]["McpTool"][];
             /**
-             * Integration Id
-             * @description ID of the MCP integration
+             * Tool Count
+             * @default 0
              */
-            integration_id: string;
+            tool_count: number;
+            /** Error */
+            error?: string | null;
+            /** Error Type */
+            error_type?: string | null;
+        };
+        /** McpServerCreate */
+        McpServerCreate: {
+            /** Name */
+            name: string;
+            /** Description */
+            description?: string | null;
             /**
-             * Selected Tools
-             * @description Specific tools to enable (None = all)
+             * Server Url
+             * Format: uri
              */
-            selected_tools?: string[] | null;
+            server_url: string;
             /**
              * Timeout Seconds
-             * @description Timeout for tool execution
              * @default 30
              */
             timeout_seconds: number;
+            /** Auth Connection Id */
+            auth_connection_id?: string | null;
+        };
+        /** McpServerListResponse */
+        McpServerListResponse: {
+            /** Results */
+            results: components["schemas"]["McpServerResponse"][];
+        };
+        /**
+         * McpServerRef
+         * @description Per-agent reference to an MCP server registration.
+         *
+         *     Stored on ``agents.config.tools.mcp_servers``. The agent owns only an
+         *     ID + per-attachment allowlist; URL/headers/auth live on the
+         *     ``mcp_servers`` table and are resolved at dispatch time. ``integration_id``
+         *     is the legacy name (pre-rebuild) and is accepted as an alias so older
+         *     saved agent configs keep loading.
+         */
+        McpServerRef: {
+            /**
+             * Server Id
+             * @description ID of the MCP server registration
+             */
+            server_id: string;
+            /**
+             * Allowed Tools
+             * @description Specific tool names to expose to this agent (None = all)
+             */
+            allowed_tools?: string[] | null;
+        };
+        /** McpServerResponse */
+        McpServerResponse: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * Organization Id
+             * Format: uuid
+             */
+            organization_id: string;
+            /** Name */
+            name: string;
+            /** Description */
+            description?: string | null;
+            /** Server Url */
+            server_url: string;
+            /** Timeout Seconds */
+            timeout_seconds: number;
+            /** Auth Connection Id */
+            auth_connection_id?: string | null;
+            /** Last Test Status */
+            last_test_status?: string | null;
+            /** Last Test At */
+            last_test_at?: string | null;
+            /** Last Test Error */
+            last_test_error?: string | null;
+            /** Created At */
+            created_at?: string | null;
+            /** Updated At */
+            updated_at?: string | null;
+        };
+        /** McpServerUpdate */
+        McpServerUpdate: {
+            /** Name */
+            name?: string | null;
+            /** Description */
+            description?: string | null;
+            /** Server Url */
+            server_url?: string | null;
+            /** Timeout Seconds */
+            timeout_seconds?: number | null;
+            /** Auth Connection Id */
+            auth_connection_id?: string | null;
+        };
+        /** McpTool */
+        McpTool: {
+            /** Name */
+            name: string;
+            /**
+             * Description
+             * @default
+             */
+            description: string;
+            /** Input Schema */
+            input_schema?: {
+                [key: string]: unknown;
+            };
+        };
+        /**
+         * McpValidateRequest
+         * @description Probe a server config WITHOUT persisting it.
+         *
+         *     Use either ``auth_connection_id`` to reuse a stored credential, OR
+         *     ``inline_headers`` for a one-shot test (the create modal uses inline
+         *     headers before the auth connection has been created). If both are
+         *     supplied ``inline_headers`` takes priority.
+         */
+        McpValidateRequest: {
+            /**
+             * Server Url
+             * Format: uri
+             */
+            server_url: string;
+            /**
+             * Timeout Seconds
+             * @default 20
+             */
+            timeout_seconds: number;
+            /** Auth Connection Id */
+            auth_connection_id?: string | null;
+            /** Inline Headers */
+            inline_headers?: {
+                [key: string]: string;
+            } | null;
         };
         /**
          * MemberResponse
@@ -8181,6 +8258,16 @@ export interface components {
             message: string;
             /** Status */
             status: string;
+        };
+        /**
+         * OnboardingStatusResponse
+         * @description Used by the FE to decide whether /outbound should redirect into
+         *     the first-run wizard. ``completed_at`` is null until the user has
+         *     either completed or explicitly skipped onboarding.
+         */
+        OnboardingStatusResponse: {
+            /** Completed At */
+            completed_at?: string | null;
         };
         /**
          * OpenAIModel
@@ -8616,21 +8703,23 @@ export interface components {
         };
         /**
          * OutboundCampaignResponse
-         * @description Schema for outbound campaign responses
+         * @description Schema for outbound campaign responses.
+         *
+         *     Phase 1 dropped the dead `calls_made/completed/successful` denormalized
+         *     counters from the model. Aggregated stats are exposed via
+         *     GET /v1/campaigns/{id}/stats (CampaignStats below) which sources from
+         *     campaign_attempts.
          * @example {
          *       "actual_start": "2024-01-15T09:00:15Z",
          *       "agent_id": "550e8400-e29b-41d4-a716-446655440000",
-         *       "calls_completed": 100,
-         *       "calls_made": 125,
-         *       "calls_successful": 45,
          *       "created_at": "2024-01-15T08:00:00Z",
          *       "id": "990e8400-e29b-41d4-a716-446655440004",
+         *       "last_progress_at": "2024-01-15T12:30:00Z",
          *       "name": "Q1 Sales Campaign",
          *       "organization_id": "660e8400-e29b-41d4-a716-446655440001",
          *       "phone_number_id": "770e8400-e29b-41d4-a716-446655440002",
          *       "scheduled_start": "2024-01-15T09:00:00Z",
-         *       "status": "running",
-         *       "total_contacts": 500,
+         *       "status": "active",
          *       "updated_at": "2024-01-15T12:30:00Z"
          *     }
          */
@@ -8678,26 +8767,6 @@ export interface components {
             /** Status Webhook */
             status_webhook?: string | null;
             /**
-             * Total Contacts
-             * @default 0
-             */
-            total_contacts: number;
-            /**
-             * Calls Made
-             * @default 0
-             */
-            calls_made: number;
-            /**
-             * Calls Completed
-             * @default 0
-             */
-            calls_completed: number;
-            /**
-             * Calls Successful
-             * @default 0
-             */
-            calls_successful: number;
-            /**
              * Created At
              * Format: date-time
              */
@@ -8713,10 +8782,20 @@ export interface components {
             actual_start?: string | null;
             /** Completed At */
             completed_at?: string | null;
+            /** Last Progress At */
+            last_progress_at?: string | null;
+            /** Last Pause At */
+            last_pause_at?: string | null;
         };
         /**
          * OutboundCampaignUpdate
-         * @description Schema for updating outbound campaigns
+         * @description Schema for updating outbound campaigns.
+         *
+         *     Phase 3 removed the `status` field from this schema. State changes
+         *     happen ONLY through the dedicated lifecycle endpoints (/start,
+         *     /pause, /resume, /stop, /cancel) which funnel through the state
+         *     machine in `app/domains/campaigns/state.py`. PUT /campaigns/{id}
+         *     is for editing config (name, schedule, pacing, etc.) only.
          */
         OutboundCampaignUpdate: {
             /**
@@ -8749,11 +8828,6 @@ export interface components {
              * @description Call list ID for contacts to call
              */
             call_list_id?: string | null;
-            /**
-             * Status
-             * @description Campaign status
-             */
-            status?: string | null;
             /** @description Call scheduling configuration */
             call_schedule?: components["schemas"]["CallSchedule"] | null;
             /** @description Campaign configuration */
@@ -8845,7 +8919,7 @@ export interface components {
         };
         /**
          * Permission
-         * @description All 60 permissions in the system.
+         * @description All 63 permissions in the system.
          *     Format: resource:action (flat strings, no nesting)
          *
          *     These are used by:
@@ -8854,7 +8928,7 @@ export interface components {
          *     - API Keys: scopes = ["agents:view", "agents:create"]
          * @enum {string}
          */
-        Permission: "admin:all" | "admin:organizations" | "dashboard:view" | "agents:view" | "agents:create" | "agents:edit" | "agents:delete" | "agents:duplicate" | "agents:talk" | "agents:call" | "numbers:view" | "numbers:create" | "numbers:edit" | "numbers:delete" | "campaigns:view" | "campaigns:create" | "campaigns:edit" | "campaigns:delete" | "campaigns:start" | "campaigns:pause" | "campaigns:stop" | "campaigns:duplicate" | "call_lists:view" | "call_lists:create" | "call_lists:edit" | "call_lists:delete" | "call_lists:import" | "call_lists:export" | "contacts:view" | "contacts:create" | "contacts:edit" | "contacts:delete" | "integrations:view" | "integrations:create" | "integrations:edit" | "integrations:delete" | "integrations:test" | "knowledge:view" | "knowledge:create" | "knowledge:edit" | "knowledge:delete" | "analytics:view" | "analytics:view_details" | "analytics:play_recording" | "analytics:listen" | "analytics:hangup" | "analytics:export" | "team:view" | "team:invite" | "team:change_role" | "team:remove" | "api_keys:view" | "api_keys:create" | "api_keys:revoke" | "billing:view" | "billing:add_payment" | "billing:remove_payment" | "billing:topup" | "billing:download_invoice" | "messaging:view" | "whatsapp:view" | "whatsapp:send" | "whatsapp:manage";
+        Permission: "admin:all" | "admin:organizations" | "dashboard:view" | "agents:view" | "agents:create" | "agents:edit" | "agents:delete" | "agents:duplicate" | "agents:talk" | "agents:call" | "numbers:view" | "numbers:create" | "numbers:edit" | "numbers:delete" | "campaigns:view" | "campaigns:create" | "campaigns:edit" | "campaigns:delete" | "campaigns:start" | "campaigns:pause" | "campaigns:stop" | "campaigns:cancel" | "call_lists:view" | "call_lists:create" | "call_lists:edit" | "call_lists:delete" | "call_lists:import" | "contacts:view" | "contacts:create" | "contacts:edit" | "contacts:delete" | "integrations:view" | "integrations:create" | "integrations:edit" | "integrations:delete" | "integrations:test" | "knowledge:view" | "knowledge:create" | "knowledge:edit" | "knowledge:delete" | "analytics:view" | "analytics:view_details" | "analytics:play_recording" | "analytics:listen" | "analytics:hangup" | "analytics:export" | "team:view" | "team:invite" | "team:change_role" | "team:remove" | "api_keys:view" | "api_keys:create" | "api_keys:revoke" | "billing:view" | "billing:add_payment" | "billing:remove_payment" | "billing:topup" | "billing:download_invoice" | "messaging:view" | "whatsapp:view" | "whatsapp:send" | "whatsapp:manage";
         /**
          * PhantomModelConfig
          * @description Neuratel Phantom LLM — proprietary inference via phantom.neuratel.ai.
@@ -9959,6 +10033,8 @@ export interface components {
             send_dtmf?: components["schemas"]["SendDtmfConfig"];
             /** @description Voicemail detection settings */
             voicemail?: components["schemas"]["VoicemailToolConfig"];
+            /** @description In-call do-not-call opt-out tool */
+            add_to_dnc?: components["schemas"]["AddToDncConfig"];
             /** @description Outbound call initiation tool */
             place_outbound_call?: components["schemas"]["PlaceOutboundCallConfig"];
             /** @description WhatsApp voice note sending tool */
@@ -10279,6 +10355,15 @@ export interface components {
             input?: unknown;
             /** Context */
             ctx?: Record<string, never>;
+        };
+        /** VariableCoverageStat */
+        VariableCoverageStat: {
+            /** Filled */
+            filled: number;
+            /** Total */
+            total: number;
+            /** Pct */
+            pct: number;
         };
         /**
          * VoiceFilterOptions
@@ -11029,7 +11114,7 @@ export interface components {
          * @description Available webhook event types
          * @enum {string}
          */
-        WebhookEventTypeEnum: "call.started" | "call.ended" | "call.ringing" | "call.answered" | "call.failed" | "call.transferred" | "transcript.partial" | "transcript.final" | "transcript.ready" | "recording.ready" | "agent.turn.started" | "agent.turn.ended" | "agent.tool.called" | "call.summary.ready";
+        WebhookEventTypeEnum: "call.started" | "call.ended" | "call.ringing" | "call.answered" | "call.failed" | "call.transferred" | "transcript.partial" | "transcript.final" | "transcript.ready" | "recording.ready" | "agent.turn.started" | "agent.turn.ended" | "agent.tool.called" | "call.summary.ready" | "campaign.started" | "campaign.paused" | "campaign.resumed" | "campaign.stopped" | "campaign.cancelled" | "campaign.completed" | "campaign.retry_scheduled" | "dnc.added";
         /**
          * WebhookListResponse
          * @description Paginated list of webhooks.
@@ -11473,18 +11558,6 @@ export interface components {
              * File
              * Format: binary
              * @description File to upload (txt, md, html, pdf, docx, epub)
-             */
-            file: string;
-        };
-        /**
-         * BulkImportCSV
-         * @description Upload a CSV file to bulk import contacts into a call list.
-         */
-        BulkImportCSV: {
-            /**
-             * File
-             * Format: binary
-             * @description CSV file with contact data (max 10MB, 10,000 rows)
              */
             file: string;
         };
@@ -12359,6 +12432,8 @@ export interface operations {
                 /** @description inbound | outbound */
                 direction?: string | null;
                 interval?: "hour" | "day" | "week";
+                /** @description When true, narrow every metric to sessions where ``campaign_id IS NOT NULL``. Used by the Outbound > Analytics tab so the dashboard reflects campaign activity rather than total org voice traffic. Mutually compatible with ``campaign_id`` (specific campaign always wins). */
+                campaign_attributed_only?: boolean;
             };
             header?: never;
             path?: never;
@@ -12879,138 +12954,6 @@ export interface operations {
             };
         };
     };
-    list_voices_v1_voices_get: {
-        parameters: {
-            query?: {
-                /** @description Filter by provider: elevenlabs, cartesia */
-                provider?: string | null;
-                /** @description Search by name or description */
-                search?: string | null;
-                /** @description Filter by category: premade, cloned, professional */
-                category?: string | null;
-                /** @description Filter by accent: American, British, etc. */
-                accent?: string | null;
-                /** @description Filter by age: young, middle_aged, old */
-                age?: string | null;
-                /** @description Filter by use_case: narration, conversational, etc. */
-                use_case?: string | null;
-                /** @description Filter by language code: en, es, fr, etc. */
-                language?: string | null;
-                /** @description Filter by gender: male, female, neutral */
-                gender?: string | null;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["VoiceListResponse"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    get_filter_options_v1_voices_filters_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["VoiceFilterOptions"];
-                };
-            };
-        };
-    };
-    get_voice_v1_voices__display_id__get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description The voice display ID (e.g., EL-001, CA-042). */
-                display_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["VoiceResponse"];
-                };
-            };
-            /** @description Voice Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    /**
-                     * @example {
-                     *       "detail": "Voice EL-999 not found"
-                     *     }
-                     */
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    sync_voices_v1_voices_sync_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["VoiceSyncResponse"];
-                };
-            };
-        };
-    };
     list_phone_numbers_v1_numbers_get: {
         parameters: {
             query?: {
@@ -13344,14 +13287,9 @@ export interface operations {
             };
         };
     };
-    list_mcp_integrations_v1_integrations_mcp_get: {
+    list_auth_connections_v1_auth_connections_get: {
         parameters: {
-            query?: {
-                /** @description Number of records to skip for pagination. Defaults to 0. */
-                skip?: number;
-                /** @description Maximum number of records to return. Defaults to 100. Max 1000. */
-                limit?: number;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
@@ -13364,21 +13302,12 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["MCPIntegrationListResponse"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
+                    "application/json": components["schemas"]["AuthConnectionListResponse"];
                 };
             };
         };
     };
-    create_mcp_integration_v1_integrations_mcp_post: {
+    create_auth_connection_v1_auth_connections_post: {
         parameters: {
             query?: never;
             header?: never;
@@ -13387,7 +13316,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["MCPIntegrationCreate"];
+                "application/json": components["schemas"]["AuthConnectionCreate"];
             };
         };
         responses: {
@@ -13397,7 +13326,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["MCPIntegrationResponse"];
+                    "application/json": components["schemas"]["AuthConnectionResponse"];
                 };
             };
             /** @description Validation Error */
@@ -13411,19 +13340,19 @@ export interface operations {
             };
         };
     };
-    update_mcp_integration_v1_integrations_mcp__integration_id__put: {
+    update_auth_connection_v1_auth_connections__auth_id__put: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                /** @description The unique identifier of the MCP integration to update. */
-                integration_id: string;
+                /** @description Auth connection id */
+                auth_id: string;
             };
             cookie?: never;
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["MCPIntegrationUpdate"];
+                "application/json": components["schemas"]["AuthConnectionUpdate"];
             };
         };
         responses: {
@@ -13433,16 +13362,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["MCPIntegrationResponse"];
-                };
-            };
-            /** @description Integration Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["NotFoundError"];
+                    "application/json": components["schemas"]["AuthConnectionResponse"];
                 };
             };
             /** @description Validation Error */
@@ -13456,13 +13376,13 @@ export interface operations {
             };
         };
     };
-    delete_mcp_integration_v1_integrations_mcp__integration_id__delete: {
+    delete_auth_connection_v1_auth_connections__auth_id__delete: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                /** @description The unique identifier of the MCP integration to delete. */
-                integration_id: string;
+                /** @description Auth connection id */
+                auth_id: string;
             };
             cookie?: never;
         };
@@ -13475,15 +13395,6 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Integration Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["NotFoundError"];
-                };
-            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -13495,14 +13406,11 @@ export interface operations {
             };
         };
     };
-    list_mcp_tools_v1_integrations_mcp__integration_id__tools_get: {
+    list_mcp_servers_v1_mcp_servers_get: {
         parameters: {
             query?: never;
             header?: never;
-            path: {
-                /** @description The unique identifier of the MCP integration to list tools from. */
-                integration_id: string;
-            };
+            path?: never;
             cookie?: never;
         };
         requestBody?: never;
@@ -13513,119 +13421,12 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Integration Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["NotFoundError"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
+                    "application/json": components["schemas"]["McpServerListResponse"];
                 };
             };
         };
     };
-    list_mcp_tools_v1_integrations_mcp__integration_id__tools_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description The unique identifier of the MCP integration to list tools from. */
-                integration_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Integration Not Found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["NotFoundError"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    execute_mcp_tool_v1_integrations_mcp__integration_id__execute_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description The unique identifier of the MCP integration to execute a tool on. */
-                integration_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Missing tool_name in request body */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Integration not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["NotFoundError"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    test_mcp_configuration_v1_integrations_mcp_test_post: {
+    create_mcp_server_v1_mcp_servers_post: {
         parameters: {
             query?: never;
             header?: never;
@@ -13634,7 +13435,43 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["MCPIntegrationTestRequest"];
+                "application/json": components["schemas"]["McpServerCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["McpServerResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_mcp_server_v1_mcp_servers__server_id__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description MCP server id */
+                server_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["McpServerUpdate"];
             };
         };
         responses: {
@@ -13644,7 +13481,172 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["MCPIntegrationTestResponse"];
+                    "application/json": components["schemas"]["McpServerResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_mcp_server_v1_mcp_servers__server_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description MCP server id */
+                server_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    validate_mcp_server_v1_mcp_servers_validate_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["McpValidateRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["McpProbeResult"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    test_mcp_server_v1_mcp_servers__server_id__test_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description MCP server id */
+                server_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["McpProbeResult"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_mcp_server_tools_v1_mcp_servers__server_id__tools_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description MCP server id */
+                server_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["McpProbeResult"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    execute_mcp_server_tool_v1_mcp_servers__server_id__tools__tool_name__execute_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description MCP server id */
+                server_id: string;
+                /** @description Tool name */
+                tool_name: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["McpExecuteRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["McpExecuteResult"];
                 };
             };
             /** @description Validation Error */
@@ -14027,6 +14029,49 @@ export interface operations {
             };
         };
     };
+    get_campaign_coverage_v1_campaigns_coverage_get: {
+        parameters: {
+            query: {
+                /** @description Agent whose prompt to inspect. */
+                agent_id: string;
+                /** @description Call list to scan for var coverage. */
+                call_list_id: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CampaignCoverageResponse"];
+                };
+            };
+            /** @description Agent Or Call List Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     list_campaigns_v1_campaigns_get: {
         parameters: {
             query?: {
@@ -14034,6 +14079,10 @@ export interface operations {
                 skip?: number;
                 /** @description Maximum number of records to return. Defaults to 50. Max 100. */
                 limit?: number;
+                /** @description Filter by campaign status (draft, scheduled, active, paused, stopped, completed, cancelled, error). */
+                status?: string | null;
+                /** @description Case-insensitive substring match on campaign name. */
+                q?: string | null;
             };
             header?: never;
             path?: never;
@@ -14401,6 +14450,235 @@ export interface operations {
             };
         };
     };
+    resume_campaign_v1_campaigns__campaign_id__resume_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The unique identifier of the campaign. */
+                campaign_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OutboundCampaignResponse"];
+                };
+            };
+            /** @description Campaign Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "detail": "Campaign not found"
+                     *     }
+                     */
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    cancel_campaign_v1_campaigns__campaign_id__cancel_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The unique identifier of the campaign. */
+                campaign_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OutboundCampaignResponse"];
+                };
+            };
+            /** @description Campaign Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "detail": "Campaign not found"
+                     *     }
+                     */
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_campaign_stats_v1_campaigns__campaign_id__stats_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The unique identifier of the campaign. */
+                campaign_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    retry_campaign_attempts_v1_campaigns__campaign_id__retry_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The unique identifier of the campaign. */
+                campaign_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["CampaignRetryRequest"] | null;
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CampaignRetryResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_campaign_attempts_v1_campaigns__campaign_id__attempts_get: {
+        parameters: {
+            query?: {
+                /** @description Filter by outcome (e.g. 'failed', 'completed', 'pending'). */
+                outcome?: string | null;
+                skip?: number;
+                limit?: number;
+            };
+            header?: never;
+            path: {
+                /** @description The unique identifier of the campaign. */
+                campaign_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CampaignAttemptListResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    test_campaign_status_webhook_v1_campaigns__campaign_id__test_webhook_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The unique identifier of the campaign. */
+                campaign_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CampaignTestWebhookResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     list_outbound_calls_v1_campaigns_calls_get: {
         parameters: {
             query?: {
@@ -14694,28 +14972,17 @@ export interface operations {
             };
         };
     };
-    bulk_import_contacts_v1_lists__call_list_id__bulk_import_post: {
+    get_contact_import_progress_v1_lists_import_jobs__job_id__get: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                /** @description The unique identifier of the call list. */
-                call_list_id: string;
+                /** @description Job id returned from POST /contacts/import. */
+                job_id: string;
             };
             cookie?: never;
         };
-        requestBody: {
-            content: {
-                "multipart/form-data": {
-                    /**
-                     * File
-                     * Format: binary
-                     * @description CSV file with contact data (max 10MB, 10,000 rows)
-                     */
-                    file: string;
-                };
-            };
-        };
+        requestBody?: never;
         responses: {
             /** @description Successful Response */
             200: {
@@ -14723,24 +14990,15 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/json": components["schemas"]["ContactImportProgressResponse"];
                 };
             };
-            /** @description Invalid CSV file or format */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Call list not found */
+            /** @description Job not found or expired */
             404: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content: {
-                    "application/json": components["schemas"]["NotFoundError"];
-                };
+                content?: never;
             };
             /** @description Validation Error */
             422: {
@@ -14932,6 +15190,121 @@ export interface operations {
                      *     }
                      */
                     "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    preview_contact_import_v1_lists__call_list_id__contacts_preview_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The unique identifier of the call list. */
+                call_list_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "multipart/form-data": {
+                    /**
+                     * File
+                     * Format: binary
+                     * @description CSV file with contact data (max 25MB).
+                     */
+                    file: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContactImportPreviewResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    commit_contact_import_v1_lists__call_list_id__contacts_import_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The unique identifier of the call list. */
+                call_list_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ContactImportCommitRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContactImportCommitResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    bulk_paste_contacts_v1_lists__call_list_id__contacts_bulk_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The unique identifier of the call list. */
+                call_list_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BulkPasteContactsRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BulkPasteContactsResponse"];
                 };
             };
             /** @description Validation Error */
@@ -15494,6 +15867,331 @@ export interface operations {
             };
         };
     };
+    adjust_organization_credits_v1_billing_admin_credits_adjust_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AdminAdjustCreditsRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminAdjustCreditsResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_platform_revenue_v1_billing_admin_revenue_get: {
+        parameters: {
+            query?: {
+                /** @description Number of days to look back */
+                days?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PlatformRevenueResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_all_orgs_usage_v1_billing_admin_all_usage_get: {
+        parameters: {
+            query?: {
+                /** @description Number of days to look back */
+                days?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AllOrgsUsageResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_org_usage_admin_v1_billing_admin_usage__org_id__get: {
+        parameters: {
+            query?: {
+                /** @description Number of days to look back */
+                days?: number;
+            };
+            header?: never;
+            path: {
+                org_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UsageSummaryResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_org_billing_overrides_v1_billing_admin_orgs__organization_id__overrides_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminBillingOverridesResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_org_billing_overrides_v1_billing_admin_orgs__organization_id__overrides_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AdminBillingOverridesRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminBillingOverridesResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    convert_pilot_v1_billing_admin_orgs__organization_id__pilot_convert_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AdminPilotConvertRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminPilotConvertResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    mark_pilot_go_live_v1_billing_admin_orgs__organization_id__pilot_mark_go_live_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminPilotActionResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    refund_pilot_v1_billing_admin_orgs__organization_id__pilot_refund_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminPilotActionResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    cancel_pilot_v1_billing_admin_orgs__organization_id__pilot_cancel_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminPilotActionResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     dnc_check_v1_dnc_check_get: {
         parameters: {
             query: {
@@ -15663,6 +16361,106 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["DNCSettingsResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    admin_list_dnc_v1_billing_admin_dnc_get: {
+        parameters: {
+            query?: {
+                source?: string | null;
+                include_expired?: boolean;
+                skip?: number;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DNCEntryListResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    admin_add_dnc_v1_billing_admin_dnc_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AdminDNCAddRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DNCEntryResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    admin_remove_dnc_v1_billing_admin_dnc__entry_id__delete: {
+        parameters: {
+            query?: {
+                reason?: string | null;
+            };
+            header?: never;
+            path: {
+                entry_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
                 };
             };
             /** @description Validation Error */
@@ -16728,552 +17526,6 @@ export interface operations {
             };
         };
     };
-    list_organizations_v1_organizations__get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["OrganizationResponse"][];
-                };
-            };
-        };
-    };
-    create_organization_v1_organizations__post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["OrganizationCreate"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["OrganizationResponse"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    get_my_organization_v1_organizations_me_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["OrganizationResponse"];
-                };
-            };
-        };
-    };
-    get_organization_by_id_v1_organizations__org_id__get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                org_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["OrganizationResponse"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    delete_organization_v1_organizations__org_id__delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                org_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    upload_logo_v1_organizations__org_id__logo_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                org_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "multipart/form-data": {
-                    /** File */
-                    file: string;
-                };
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        [key: string]: string;
-                    };
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    update_organization_permissions_v1_organizations__org_id__permissions_patch: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                org_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["OrganizationUpdate"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["OrganizationResponse"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    update_organization_credentials_v1_organizations__org_id__credentials_put: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                org_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["OrganizationCredentialsUpdate"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["OrganizationResponse"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    list_members_v1_organizations__org_id__members_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                org_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["MembersListResponse"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    list_invitations_v1_organizations__org_id__invitations_get: {
-        parameters: {
-            query?: {
-                /** @description Filter by status: pending, accepted, revoked */
-                status?: string;
-            };
-            header?: never;
-            path: {
-                org_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["InvitationsListResponse"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    invite_member_v1_organizations__org_id__invitations_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                org_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["InviteMemberRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["InvitationResponse"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    revoke_invitation_v1_organizations__org_id__invitations__invitation_id__delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                org_id: string;
-                /** @description The invitation ID to revoke */
-                invitation_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    remove_member_v1_organizations__org_id__members__user_id__delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                org_id: string;
-                /** @description The user ID to remove */
-                user_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    update_member_role_v1_organizations__org_id__members__user_id__role_patch: {
-        parameters: {
-            query?: {
-                /** @description The new role (admin or operator) - deprecated, use request body */
-                role?: string;
-            };
-            header?: never;
-            path: {
-                org_id: string;
-                /** @description The user ID to update */
-                user_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["UpdateRoleRequest"] | null;
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["MemberResponse"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    get_invitation_v1_organizations_invitations__invitation_id__get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                invitation_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    register_and_accept_invitation_v1_organizations_invitations__invitation_id__register_and_accept_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                invitation_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["RegisterAndAcceptRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    accept_invitation_v1_organizations_invitations__invitation_id__accept_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                invitation_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
     list_master_keys_v1_api_keys_master_get: {
         parameters: {
             query?: {
@@ -17556,336 +17808,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": unknown;
-                };
-            };
-        };
-    };
-    get_public_status_v1_status_public_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["StatusOverview"];
-                };
-            };
-        };
-    };
-    report_incident_v1_status_report_incident_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PublicIncidentReport"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    run_health_checks_v1_status_health_check_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HealthCheckResult"][];
-                };
-            };
-        };
-    };
-    subscribe_to_updates_v1_status_subscribe_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EmailSubscribeRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    subscribe_slack_webhook_v1_status_subscribe_slack_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SlackSubscribeRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    unsubscribe_slack_webhook_v1_status_subscribe_slack_delete: {
-        parameters: {
-            query: {
-                /** @description Slack webhook URL to unsubscribe */
-                webhook_url: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    list_notifications_v1_notifications_get: {
-        parameters: {
-            query?: {
-                /** @description Number of records to skip for pagination. Defaults to 0. */
-                skip?: number;
-                /** @description Maximum number of records to return. Defaults to 100. Max 1000. */
-                limit?: number;
-                /**
-                 * @deprecated
-                 * @description (Legacy) Use skip/limit
-                 */
-                page?: number;
-                /** @description Filter to unread only */
-                unread_only?: boolean;
-                /** @description Filter by notification type */
-                notification_type?: string | null;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["NotificationListResponse"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    get_unread_count_v1_notifications_unread_count_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["UnreadCountResponse"];
-                };
-            };
-        };
-    };
-    mark_notification_read_v1_notifications__notification_id__read_patch: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description The unique identifier of the notification. */
-                notification_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["NotificationOut"];
-                };
-            };
-            /** @description Notification not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
-    };
-    mark_all_read_v1_notifications_read_all_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["MarkReadResponse"];
-                };
-            };
-        };
-    };
-    delete_notification_v1_notifications__notification_id__delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description The unique identifier of the notification. */
-                notification_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Notification not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
