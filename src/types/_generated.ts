@@ -729,6 +729,100 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/voices": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Voices
+         * @description List all available TTS voices with advanced filtering.
+         *
+         *     Supports filtering by:
+         *     - provider: elevenlabs, cartesia
+         *     - category: premade, cloned, professional (ElevenLabs only)
+         *     - language: en, es, fr, etc.
+         *     - gender: male, female, neutral
+         *     - accent: American, British, etc. (ElevenLabs only)
+         *     - age: young, middle_aged, old (ElevenLabs only)
+         *     - use_case: narration, conversational, etc. (ElevenLabs only)
+         *     - search: free text search in name and description
+         */
+        get: operations["list_voices_v1_voices_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/voices/filters": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Voice Filter Options
+         * @description Get available filter options for the voice dropdown.
+         *     Returns distinct values for each filterable field.
+         */
+        get: operations["get_filter_options_v1_voices_filters_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/voices/{display_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Voice
+         * @description Retrieve a specific voice by its display ID (e.g., EL-001, CA-042).
+         */
+        get: operations["get_voice_v1_voices__display_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/voices/sync": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Sync Voices
+         * @description Manually trigger voice sync from ElevenLabs and Cartesia APIs (admin only).
+         *
+         *     This fetches all voices from both providers and updates the database.
+         *     Normally this happens automatically on a weekly schedule.
+         */
+        post: operations["sync_voices_v1_voices_sync_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/numbers": {
         parameters: {
             query?: never;
@@ -2538,6 +2632,88 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/auth/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Current Auth Context
+         * @description Return authentication context for the current user.
+         */
+        get: operations["get_current_auth_context_v1_auth_me_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/auth/permissions/{resource}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Check Resource Permissions
+         * @description Check CRUD permissions for a specific resource.
+         */
+        get: operations["check_resource_permissions_v1_auth_permissions__resource__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/auth/profile": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Update Profile
+         * @description Update user display name and/or avatar.
+         */
+        patch: operations["update_profile_v1_auth_profile_patch"];
+        trace?: never;
+    };
+    "/v1/auth/ws-token": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Ws Token
+         * @description Issue a short-lived HS256 JWT (5 min) for WebSocket authentication.
+         *     WebSocket connections cannot send HttpOnly session cookies, so they
+         *     request a one-time token here and pass it as ?token= query param.
+         */
+        get: operations["get_ws_token_v1_auth_ws_token_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/workflows": {
         parameters: {
             query?: never;
@@ -2897,6 +3073,362 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/organizations/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List organizations
+         * @description List all organizations (super admin only)
+         */
+        get: operations["list_organizations_v1_organizations__get"];
+        put?: never;
+        /**
+         * Create organization
+         * @description Create a new organization.
+         */
+        post: operations["create_organization_v1_organizations__post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get my organization
+         * @description Get the current user's organization.
+         */
+        get: operations["get_my_organization_v1_organizations_me_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get organization by ID
+         * @description Get organization by database UUID.
+         *
+         *     - Super admin: can access any org
+         *     - Regular user: can only access their own org
+         */
+        get: operations["get_organization_by_id_v1_organizations__org_id__get"];
+        put?: never;
+        post?: never;
+        /**
+         * Delete organization
+         * @description Delete an organization. Super admin only.
+         */
+        delete: operations["delete_organization_v1_organizations__org_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org_id}/logo": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Upload organization logo
+         * @description Upload organization logo.
+         *
+         *     Accepts image files (jpg, jpeg, png, gif, webp).
+         */
+        post: operations["upload_logo_v1_organizations__org_id__logo_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org_id}/permissions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Update organization permissions
+         * @description Update organization permissions and settings.
+         *
+         *     Note: This updates business settings stored in our DB.
+         */
+        patch: operations["update_organization_permissions_v1_organizations__org_id__permissions_patch"];
+        trace?: never;
+    };
+    "/v1/organizations/{org_id}/credentials": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /**
+         * Update organization credentials
+         * @description Update organization API credentials.
+         *
+         *     Only super admins can update credentials for any organization.
+         *     Org members with manage_credentials permission can update their own org.
+         */
+        put: operations["update_organization_credentials_v1_organizations__org_id__credentials_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org_id}/members": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List organization members
+         * @description List all members of the organization. Requires admin permissions.
+         */
+        get: operations["list_members_v1_organizations__org_id__members_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org_id}/invitations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List pending invitations
+         * @description List all pending invitations for the organization. Requires admin permissions.
+         */
+        get: operations["list_invitations_v1_organizations__org_id__invitations_get"];
+        put?: never;
+        /**
+         * Invite a team member
+         * @description Send an invitation to join the organization. Requires admin permissions.
+         */
+        post: operations["invite_member_v1_organizations__org_id__invitations_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org_id}/invitations/{invitation_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Revoke an invitation
+         * @description Revoke a pending invitation. Requires admin permissions.
+         */
+        delete: operations["revoke_invitation_v1_organizations__org_id__invitations__invitation_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org_id}/members/{user_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Remove a team member
+         * @description Remove a member from the organization. Requires admin permissions.
+         */
+        delete: operations["remove_member_v1_organizations__org_id__members__user_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/{org_id}/members/{user_id}/role": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Update member role
+         * @description Update a member's role in the organization. Requires admin permissions.
+         */
+        patch: operations["update_member_role_v1_organizations__org_id__members__user_id__role_patch"];
+        trace?: never;
+    };
+    "/v1/organizations/{org_id}/members/{user_id}/permissions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/invitations/{invitation_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get invitation details
+         * @description Get invitation details by ID (public route — no auth required).
+         *     Returns org name, invitee email, and whether user already has an account.
+         */
+        get: operations["get_invitation_v1_organizations_invitations__invitation_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/invitations/{invitation_id}/register-and-accept": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Register and accept invitation
+         * @description Register a new user and accept an organization invitation in one step (new users only).
+         */
+        post: operations["register_and_accept_invitation_v1_organizations_invitations__invitation_id__register_and_accept_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/invitations/{invitation_id}/accept": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Accept invitation
+         * @description Accept an invitation (authenticated user whose email matches the invitee).
+         */
+        post: operations["accept_invitation_v1_organizations_invitations__invitation_id__accept_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/me/onboarding": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Onboarding completion state */
+        get: operations["get_my_onboarding_v1_organizations_me_onboarding_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/organizations/me/onboarding/complete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Mark onboarding completed (or skipped)
+         * @description Stamps ``onboarding_completed_at = now()``. Idempotent — calling again returns the original timestamp. The FE calls this both on the wizard's Launch path and on its Skip link so future visits no longer redirect into onboarding.
+         */
+        post: operations["complete_my_onboarding_v1_organizations_me_onboarding_complete_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/api-keys/master": {
         parameters: {
             query?: never;
@@ -3065,6 +3597,528 @@ export interface paths {
         put?: never;
         post?: never;
         delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/status/public": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Public Status
+         * @description Public endpoint - returns full status page data
+         *     No authentication required
+         */
+        get: operations["get_public_status_v1_status_public_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/status/report-incident": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Report Incident
+         * @description Allow confirmed subscribers to report incidents using templates.
+         */
+        post: operations["report_incident_v1_status_report_incident_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/status/health-check": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Run Health Checks
+         * @description Run real-time health checks on all services.
+         *     Returns current status of each service.
+         *     Names MUST match database component names exactly for latency updates.
+         */
+        get: operations["run_health_checks_v1_status_health_check_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/status/admin/metrics": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Admin Metrics
+         * @description Get dashboard metrics for admin view
+         */
+        get: operations["get_admin_metrics_v1_status_admin_metrics_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/status/admin/subscribers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Subscribers
+         * @description List all subscribers (admin view)
+         */
+        get: operations["list_subscribers_v1_status_admin_subscribers_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/status/admin/audit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Audit Log
+         * @description Get recent status notification audit log entries.
+         */
+        get: operations["get_audit_log_v1_status_admin_audit_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/status/admin/components": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Components
+         * @description List all components (admin view)
+         */
+        get: operations["list_components_v1_status_admin_components_get"];
+        put?: never;
+        /**
+         * Create Component
+         * @description Create a new status component
+         */
+        post: operations["create_component_v1_status_admin_components_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/status/admin/components/{component_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Delete Component
+         * @description Delete a component
+         */
+        delete: operations["delete_component_v1_status_admin_components__component_id__delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Update Component
+         * @description Update a component
+         */
+        patch: operations["update_component_v1_status_admin_components__component_id__patch"];
+        trace?: never;
+    };
+    "/v1/status/admin/components/{component_id}/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Update Component Status
+         * @description Update only the status of a component (quick status change)
+         */
+        patch: operations["update_component_status_v1_status_admin_components__component_id__status_patch"];
+        trace?: never;
+    };
+    "/v1/status/admin/incidents": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Incidents
+         * @description List all incidents (optionally filtered by status)
+         */
+        get: operations["list_incidents_v1_status_admin_incidents_get"];
+        put?: never;
+        /**
+         * Create Incident
+         * @description Create a new incident
+         */
+        post: operations["create_incident_v1_status_admin_incidents_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/status/admin/announce": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Send Status Announcement
+         * @description Send a status announcement to subscribers (email + Slack + in-app).
+         */
+        post: operations["send_status_announcement_v1_status_admin_announce_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/status/admin/incidents/{incident_id}/updates": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Add Incident Update
+         * @description Add an update to an incident
+         */
+        post: operations["add_incident_update_v1_status_admin_incidents__incident_id__updates_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/status/admin/incidents/{incident_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Delete Incident
+         * @description Delete an incident
+         */
+        delete: operations["delete_incident_v1_status_admin_incidents__incident_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/status/admin/maintenance": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Maintenance
+         * @description List all scheduled maintenance
+         */
+        get: operations["list_maintenance_v1_status_admin_maintenance_get"];
+        put?: never;
+        /**
+         * Create Maintenance
+         * @description Schedule maintenance
+         */
+        post: operations["create_maintenance_v1_status_admin_maintenance_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/status/admin/maintenance/{maintenance_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Delete Maintenance
+         * @description Delete a scheduled maintenance window
+         */
+        delete: operations["delete_maintenance_v1_status_admin_maintenance__maintenance_id__delete"];
+        options?: never;
+        head?: never;
+        /**
+         * Update Maintenance
+         * @description Update or reschedule maintenance
+         */
+        patch: operations["update_maintenance_v1_status_admin_maintenance__maintenance_id__patch"];
+        trace?: never;
+    };
+    "/v1/status/admin/maintenance/{maintenance_id}/start": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Start Maintenance
+         * @description Mark maintenance as started
+         */
+        post: operations["start_maintenance_v1_status_admin_maintenance__maintenance_id__start_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/status/admin/maintenance/{maintenance_id}/complete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Complete Maintenance
+         * @description Mark maintenance as completed
+         */
+        post: operations["complete_maintenance_v1_status_admin_maintenance__maintenance_id__complete_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/status/subscribe": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Subscribe To Updates
+         * @description Subscribe email to status updates (requires email confirmation)
+         */
+        post: operations["subscribe_to_updates_v1_status_subscribe_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/status/subscribe/slack": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Subscribe Slack Webhook
+         * @description Subscribe a Slack channel to status updates via webhook.
+         *
+         *     How to get your webhook URL:
+         *     1. Go to https://api.slack.com/apps
+         *     2. Create a new app (or select existing) → "From scratch"
+         *     3. Go to "Incoming Webhooks" → Enable
+         *     4. Click "Add New Webhook to Workspace"
+         *     5. Select the channel where you want notifications
+         *     6. Copy the webhook URL and paste it here
+         *
+         *     Your channel will receive rich formatted notifications whenever:
+         *     - New incidents are created
+         *     - Incidents are updated or resolved
+         *     - Maintenance is scheduled, started, or completed
+         */
+        post: operations["subscribe_slack_webhook_v1_status_subscribe_slack_post"];
+        /**
+         * Unsubscribe Slack Webhook
+         * @description Unsubscribe a Slack channel from status updates
+         */
+        delete: operations["unsubscribe_slack_webhook_v1_status_subscribe_slack_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/notifications": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Notifications
+         * @description List notifications for the current organization.
+         *
+         *     Returns paginated notifications sorted by created_at descending (newest first).
+         */
+        get: operations["list_notifications_v1_notifications_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/notifications/unread-count": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Unread Count
+         * @description Get the count of unread notifications for the current organization.
+         */
+        get: operations["get_unread_count_v1_notifications_unread_count_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/notifications/{notification_id}/read": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Mark Notification Read
+         * @description Mark a specific notification as read.
+         */
+        patch: operations["mark_notification_read_v1_notifications__notification_id__read_patch"];
+        trace?: never;
+    };
+    "/v1/notifications/read-all": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Mark All Read
+         * @description Mark all notifications as read for the current organization.
+         */
+        post: operations["mark_all_read_v1_notifications_read_all_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/notifications/{notification_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Delete Notification
+         * @description Delete a notification.
+         */
+        delete: operations["delete_notification_v1_notifications__notification_id__delete"];
         options?: never;
         head?: never;
         patch?: never;
@@ -3696,17 +4750,17 @@ export interface components {
              * Brain
              * @description LLM configuration. Default: OpenAI GPT-4.1
              */
-            brain?: (components["schemas"]["OpenAIModelConfig"] | components["schemas"]["GroqModelConfig"] | components["schemas"]["XAIModelConfig"] | components["schemas"]["PhantomModelConfig"]) | null;
+            brain?: (components["schemas"]["OpenAIModelConfig"] | components["schemas"]["GroqModelConfig"] | components["schemas"]["PhantomModelConfig"]) | null;
             /**
              * Voice
              * @description TTS configuration. Default: ElevenLabs Flash v2.5
              */
-            voice?: (components["schemas"]["ElevenLabsVoiceConfig"] | components["schemas"]["CartesiaVoiceConfig"] | components["schemas"]["PhantomVoiceConfig"]) | null;
+            voice?: (components["schemas"]["CartesiaVoiceConfig"] | components["schemas"]["PhantomVoiceConfig"]) | null;
             /**
              * Transcriber
              * @description STT configuration. Default: ElevenLabs Scribe v2
              */
-            transcriber?: (components["schemas"]["DeepgramTranscriberConfig"] | components["schemas"]["OpenAITranscriberConfig"] | components["schemas"]["SonioxTranscriberConfig"] | components["schemas"]["PhantomTranscriberConfig"]) | null;
+            transcriber?: (components["schemas"]["DeepgramTranscriberConfig"] | components["schemas"]["SonioxTranscriberConfig"] | components["schemas"]["PhantomTranscriberConfig"]) | null;
             turn_detection?: components["schemas"]["PipelineTurnDetection"] | null;
             first_message?: components["schemas"]["FirstMessageConfig"] | null;
             interruption?: components["schemas"]["InterruptionConfig"] | null;
@@ -4206,17 +5260,17 @@ export interface components {
              * Brain
              * @description LLM configuration (brain - what thinks)
              */
-            brain?: (components["schemas"]["OpenAIModelConfig"] | components["schemas"]["GroqModelConfig"] | components["schemas"]["XAIModelConfig"] | components["schemas"]["PhantomModelConfig"]) | null;
+            brain?: (components["schemas"]["OpenAIModelConfig"] | components["schemas"]["GroqModelConfig"] | components["schemas"]["PhantomModelConfig"]) | null;
             /**
              * Voice
              * @description TTS configuration
              */
-            voice?: (components["schemas"]["ElevenLabsVoiceConfig"] | components["schemas"]["CartesiaVoiceConfig"] | components["schemas"]["PhantomVoiceConfig"]) | null;
+            voice?: (components["schemas"]["CartesiaVoiceConfig"] | components["schemas"]["PhantomVoiceConfig"]) | null;
             /**
              * Transcriber
              * @description STT configuration
              */
-            transcriber?: (components["schemas"]["DeepgramTranscriberConfig"] | components["schemas"]["OpenAITranscriberConfig"] | components["schemas"]["SonioxTranscriberConfig"] | components["schemas"]["PhantomTranscriberConfig"]) | null;
+            transcriber?: (components["schemas"]["DeepgramTranscriberConfig"] | components["schemas"]["SonioxTranscriberConfig"] | components["schemas"]["PhantomTranscriberConfig"]) | null;
             turn_detection?: components["schemas"]["PipelineTurnDetection"] | null;
             first_message?: components["schemas"]["FirstMessageConfig"] | null;
             interruption?: components["schemas"]["InterruptionConfig"] | null;
@@ -5687,7 +6741,7 @@ export interface components {
          * @description Cartesia TTS models - Updated Apr 2026.
          * @enum {string}
          */
-        CartesiaModel: "sonic-3";
+        CartesiaModel: "sonic-3.5" | "sonic-3";
         /**
          * CartesiaSpeed
          * @description Cartesia speed presets.
@@ -6623,7 +7677,7 @@ export interface components {
          *     No Nova-4 exists as of 2026-04. Deepgram Flux is a separate model line (removed).
          * @enum {string}
          */
-        DeepgramNovaModel: "nova-3" | "nova-3-medical";
+        DeepgramNovaModel: "nova-3" | "nova-3-medical" | "flux" | "flux-multilingual";
         /**
          * DeepgramTranscriberConfig
          * @description Deepgram Nova-3 transcriber configuration - uses STT class (/v1/listen API).
@@ -6829,79 +7883,6 @@ export interface components {
             operator?: string | null;
             /** Value */
             value?: string | null;
-        };
-        /**
-         * ElevenLabsModel
-         * @description ElevenLabs TTS models - Updated Apr 2026.
-         * @enum {string}
-         */
-        ElevenLabsModel: "eleven_flash_v2_5";
-        /**
-         * ElevenLabsVoiceConfig
-         * @description ElevenLabs voice configuration.
-         *
-         *     SDK Defaults:
-         *     - voice_id: "bIHbv24MWmeRgasZH58o"
-         *     - model: "eleven_flash_v2_5"
-         *     - VoiceSettings: stability, similarity_boost (REQUIRED in SDK)
-         *     - apply_text_normalization: "auto"
-         */
-        ElevenLabsVoiceConfig: {
-            /**
-             * @description discriminator enum property added by openapi-typescript
-             * @enum {string}
-             */
-            provider: "elevenlabs";
-            /**
-             * Voice Id
-             * @description ElevenLabs voice ID (from voice library or cloned voice)
-             * @default bIHbv24MWmeRgasZH58o
-             */
-            voice_id: string;
-            /**
-             * @description ElevenLabs model to use
-             * @default eleven_flash_v2_5
-             */
-            model: components["schemas"]["ElevenLabsModel"];
-            /**
-             * Stability
-             * @description Voice stability (0=variable, 1=stable). Lower = more expressive
-             * @default 0.5
-             */
-            stability: number;
-            /**
-             * Similarity Boost
-             * @description Voice similarity boost. Higher = closer to original voice
-             * @default 0.75
-             */
-            similarity_boost: number;
-            /**
-             * Style
-             * @description Style exaggeration. Higher = more expressive
-             */
-            style?: number | null;
-            /**
-             * Speed
-             * @description Speaking speed
-             * @default 1
-             */
-            speed: number | null;
-            /**
-             * Use Speaker Boost
-             * @description Enhance voice clarity
-             */
-            use_speaker_boost?: boolean | null;
-            /**
-             * Apply Text Normalization
-             * @description Text normalization mode (auto, on, off)
-             * @default auto
-             */
-            apply_text_normalization: string | null;
-            /**
-             * Language
-             * @description ISO language code (e.g., 'en', 'es', 'fr'). None for auto-detect
-             */
-            language?: string | null;
         };
         /**
          * EmailSubscribeRequest
@@ -8274,13 +9255,13 @@ export interface components {
          * @description OpenAI chat models - Updated Apr 2026.
          * @enum {string}
          */
-        OpenAIModel: "gpt-5.4" | "gpt-5.4-mini" | "gpt-5.4-nano" | "gpt-4.1" | "gpt-4.1-mini" | "gpt-4.1-nano";
+        OpenAIModel: "gpt-5.4-mini" | "gpt-5.4-nano" | "gpt-4.1-mini" | "gpt-4.1-nano";
         /**
          * OpenAIModelConfig
          * @description OpenAI GPT model configuration.
          *
          *     SDK Notes:
-         *     - Default model in SDK is 'gpt-4.1'
+         *     - Default model in SDK is 'gpt-4.1-mini'
          *     - Parameter is max_completion_tokens (NOT max_tokens)
          *     - parallel_tool_calls supported
          */
@@ -8292,7 +9273,7 @@ export interface components {
             provider: "openai";
             /**
              * @description OpenAI model to use
-             * @default gpt-4.1
+             * @default gpt-4.1-mini
              */
             model: components["schemas"]["OpenAIModel"];
             /**
@@ -8336,56 +9317,12 @@ export interface components {
              * @default 3
              */
             max_tool_steps: number;
+            /**
+             * Reasoning Effort
+             * @description Reasoning effort for OpenAI reasoning models. Only 'none', 'minimal', 'low', 'medium', 'high', 'max' are valid.
+             */
+            reasoning_effort?: ("none" | "minimal" | "low" | "medium" | "high" | "max") | null;
         };
-        /**
-         * OpenAITranscriberConfig
-         * @description OpenAI transcriber configuration.
-         *
-         *     SDK Defaults:
-         *     - model: "gpt-4o-mini-transcribe"
-         *     - language: "en"
-         *     - detect_language: False
-         */
-        OpenAITranscriberConfig: {
-            /**
-             * @description discriminator enum property added by openapi-typescript
-             * @enum {string}
-             */
-            provider: "openai";
-            /**
-             * @description OpenAI transcription model
-             * @default gpt-4o-mini-transcribe
-             */
-            model: components["schemas"]["OpenAIWhisperModel"];
-            /**
-             * Language
-             * @description Language code (ISO)
-             * @default en
-             */
-            language: string;
-            /**
-             * Detect Language
-             * @description Automatically detect the language
-             * @default false
-             */
-            detect_language: boolean;
-            /**
-             * Prompt
-             * @description Optional prompt for context/vocabulary hints
-             */
-            prompt?: string | null;
-            /**
-             * Noise Reduction Type
-             * @description Noise reduction type (auto, near_field, far_field). Optional.
-             */
-            noise_reduction_type?: string | null;
-        };
-        /**
-         * OpenAIWhisperModel
-         * @description OpenAI transcription models - Updated Apr 2026.
-         * @enum {string}
-         */
-        OpenAIWhisperModel: "gpt-4o-mini-transcribe";
         /**
          * OrgUsageItem
          * @description Usage summary for a single organization.
@@ -9688,7 +10625,7 @@ export interface components {
          *     including English + Arabic with native code-switching and built-in semantic EOU.
          * @enum {string}
          */
-        SonioxModel: "stt-rt-v4";
+        SonioxModel: "stt-rt-v5" | "stt-rt-v4";
         /**
          * SonioxTranscriberConfig
          * @description Soniox v4 STT provider configuration.
@@ -11477,69 +12414,6 @@ export interface components {
             unavailable_message: string;
         };
         /**
-         * XAIModel
-         * @description xAI Grok models. Non-reasoning variants for voice (low latency, no thinking tokens).
-         * @enum {string}
-         */
-        XAIModel: "grok-4-1-fast-non-reasoning" | "grok-4.20-0309-non-reasoning";
-        /**
-         * XAIModelConfig
-         * @description xAI Grok model configuration.
-         */
-        XAIModelConfig: {
-            /**
-             * @description discriminator enum property added by openapi-typescript
-             * @enum {string}
-             */
-            provider: "xai";
-            /**
-             * @description xAI model to use
-             * @default grok-4-1-fast-non-reasoning
-             */
-            model: components["schemas"]["XAIModel"];
-            /**
-             * Instructions
-             * @description System prompt/instructions for the model
-             * @default You are a helpful AI assistant.
-             */
-            instructions: string;
-            /**
-             * System Timezone
-             * @description Agent's timezone for time-aware responses
-             * @default UTC
-             */
-            system_timezone: string;
-            /**
-             * Temperature
-             * @description Randomness in responses
-             * @default 0.8
-             */
-            temperature: number;
-            /**
-             * Max Completion Tokens
-             * @description Maximum tokens in response
-             * @default 4096
-             */
-            max_completion_tokens: number | null;
-            /**
-             * @description How to select tools
-             * @default auto
-             */
-            tool_choice: components["schemas"]["ToolChoice"];
-            /**
-             * Parallel Tool Calls
-             * @description Allow the model to call multiple tools in a single response.
-             * @default true
-             */
-            parallel_tool_calls: boolean;
-            /**
-             * Max Tool Steps
-             * @description Maximum consecutive tool calls per LLM turn.
-             * @default 3
-             */
-            max_tool_steps: number;
-        };
-        /**
          * KnowledgeBaseFileUpload
          * @description Upload a file to create a knowledge base.
          */
@@ -12950,6 +13824,138 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_voices_v1_voices_get: {
+        parameters: {
+            query?: {
+                /** @description Filter by provider: elevenlabs, cartesia */
+                provider?: string | null;
+                /** @description Search by name or description */
+                search?: string | null;
+                /** @description Filter by category: premade, cloned, professional */
+                category?: string | null;
+                /** @description Filter by accent: American, British, etc. */
+                accent?: string | null;
+                /** @description Filter by age: young, middle_aged, old */
+                age?: string | null;
+                /** @description Filter by use_case: narration, conversational, etc. */
+                use_case?: string | null;
+                /** @description Filter by language code: en, es, fr, etc. */
+                language?: string | null;
+                /** @description Filter by gender: male, female, neutral */
+                gender?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["VoiceListResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_filter_options_v1_voices_filters_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["VoiceFilterOptions"];
+                };
+            };
+        };
+    };
+    get_voice_v1_voices__display_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The voice display ID (e.g., EL-001, CA-042). */
+                display_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["VoiceResponse"];
+                };
+            };
+            /** @description Voice Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "detail": "Voice EL-999 not found"
+                     *     }
+                     */
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    sync_voices_v1_voices_sync_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["VoiceSyncResponse"];
                 };
             };
         };
@@ -16768,6 +17774,116 @@ export interface operations {
             };
         };
     };
+    get_current_auth_context_v1_auth_me_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AuthContextResponse"];
+                };
+            };
+        };
+    };
+    check_resource_permissions_v1_auth_permissions__resource__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                resource: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_profile_v1_auth_profile_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProfileUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_ws_token_v1_auth_ws_token_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+        };
+    };
     list_workflows_v1_workflows_get: {
         parameters: {
             query?: {
@@ -17526,6 +18642,592 @@ export interface operations {
             };
         };
     };
+    list_organizations_v1_organizations__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrganizationResponse"][];
+                };
+            };
+        };
+    };
+    create_organization_v1_organizations__post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["OrganizationCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrganizationResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_my_organization_v1_organizations_me_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrganizationResponse"];
+                };
+            };
+        };
+    };
+    get_organization_by_id_v1_organizations__org_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrganizationResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_organization_v1_organizations__org_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    upload_logo_v1_organizations__org_id__logo_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "multipart/form-data": {
+                    /** File */
+                    file: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: string;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_organization_permissions_v1_organizations__org_id__permissions_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["OrganizationUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrganizationResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_organization_credentials_v1_organizations__org_id__credentials_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["OrganizationCredentialsUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrganizationResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_members_v1_organizations__org_id__members_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MembersListResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_invitations_v1_organizations__org_id__invitations_get: {
+        parameters: {
+            query?: {
+                /** @description Filter by status: pending, accepted, revoked */
+                status?: string;
+            };
+            header?: never;
+            path: {
+                org_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InvitationsListResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    invite_member_v1_organizations__org_id__invitations_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["InviteMemberRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InvitationResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    revoke_invitation_v1_organizations__org_id__invitations__invitation_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org_id: string;
+                /** @description The invitation ID to revoke */
+                invitation_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    remove_member_v1_organizations__org_id__members__user_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                org_id: string;
+                /** @description The user ID to remove */
+                user_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_member_role_v1_organizations__org_id__members__user_id__role_patch: {
+        parameters: {
+            query?: {
+                /** @description The new role (admin or operator) - deprecated, use request body */
+                role?: string;
+            };
+            header?: never;
+            path: {
+                org_id: string;
+                /** @description The user ID to update */
+                user_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["UpdateRoleRequest"] | null;
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MemberResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_invitation_v1_organizations_invitations__invitation_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                invitation_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    register_and_accept_invitation_v1_organizations_invitations__invitation_id__register_and_accept_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                invitation_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RegisterAndAcceptRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    accept_invitation_v1_organizations_invitations__invitation_id__accept_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                invitation_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_my_onboarding_v1_organizations_me_onboarding_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OnboardingStatusResponse"];
+                };
+            };
+        };
+    };
+    complete_my_onboarding_v1_organizations_me_onboarding_complete_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OnboardingStatusResponse"];
+                };
+            };
+        };
+    };
     list_master_keys_v1_api_keys_master_get: {
         parameters: {
             query?: {
@@ -17808,6 +19510,909 @@ export interface operations {
                 };
                 content: {
                     "application/json": unknown;
+                };
+            };
+        };
+    };
+    get_public_status_v1_status_public_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StatusOverview"];
+                };
+            };
+        };
+    };
+    report_incident_v1_status_report_incident_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PublicIncidentReport"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    run_health_checks_v1_status_health_check_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HealthCheckResult"][];
+                };
+            };
+        };
+    };
+    get_admin_metrics_v1_status_admin_metrics_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+        };
+    };
+    list_subscribers_v1_status_admin_subscribers_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+        };
+    };
+    get_audit_log_v1_status_admin_audit_get: {
+        parameters: {
+            query?: {
+                /** @description Maximum number of log entries to return. */
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_components_v1_status_admin_components_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ComponentAdminOut"][];
+                };
+            };
+        };
+    };
+    create_component_v1_status_admin_components_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ComponentCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ComponentAdminOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_component_v1_status_admin_components__component_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                component_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_component_v1_status_admin_components__component_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                component_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ComponentUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_component_status_v1_status_admin_components__component_id__status_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                component_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ComponentStatusUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_incidents_v1_status_admin_incidents_get: {
+        parameters: {
+            query?: {
+                /** @description Filter by incident status: investigating, identified, monitoring, resolved. */
+                status?: string | null;
+                /** @description Maximum number of incidents to return. Defaults to 20. Max 100. */
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["IncidentOut"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_incident_v1_status_admin_incidents_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["IncidentCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["IncidentOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    send_status_announcement_v1_status_admin_announce_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AnnouncementRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    add_incident_update_v1_status_admin_incidents__incident_id__updates_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                incident_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["IncidentUpdateCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_incident_v1_status_admin_incidents__incident_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                incident_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_maintenance_v1_status_admin_maintenance_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MaintenanceOut"][];
+                };
+            };
+        };
+    };
+    create_maintenance_v1_status_admin_maintenance_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MaintenanceCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_maintenance_v1_status_admin_maintenance__maintenance_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                maintenance_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_maintenance_v1_status_admin_maintenance__maintenance_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                maintenance_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MaintenanceUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    start_maintenance_v1_status_admin_maintenance__maintenance_id__start_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                maintenance_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    complete_maintenance_v1_status_admin_maintenance__maintenance_id__complete_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                maintenance_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    subscribe_to_updates_v1_status_subscribe_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EmailSubscribeRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    subscribe_slack_webhook_v1_status_subscribe_slack_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SlackSubscribeRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    unsubscribe_slack_webhook_v1_status_subscribe_slack_delete: {
+        parameters: {
+            query: {
+                /** @description Slack webhook URL to unsubscribe */
+                webhook_url: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_notifications_v1_notifications_get: {
+        parameters: {
+            query?: {
+                /** @description Number of records to skip for pagination. Defaults to 0. */
+                skip?: number;
+                /** @description Maximum number of records to return. Defaults to 100. Max 1000. */
+                limit?: number;
+                /**
+                 * @deprecated
+                 * @description (Legacy) Use skip/limit
+                 */
+                page?: number;
+                /** @description Filter to unread only */
+                unread_only?: boolean;
+                /** @description Filter by notification type */
+                notification_type?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["NotificationListResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_unread_count_v1_notifications_unread_count_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UnreadCountResponse"];
+                };
+            };
+        };
+    };
+    mark_notification_read_v1_notifications__notification_id__read_patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The unique identifier of the notification. */
+                notification_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["NotificationOut"];
+                };
+            };
+            /** @description Notification not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    mark_all_read_v1_notifications_read_all_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MarkReadResponse"];
+                };
+            };
+        };
+    };
+    delete_notification_v1_notifications__notification_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The unique identifier of the notification. */
+                notification_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Notification not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

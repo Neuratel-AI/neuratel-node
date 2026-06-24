@@ -73,16 +73,12 @@ export type CartesiaVoiceConfig = Schemas["CartesiaVoiceConfig"];
 export type CartesiaModel = Schemas["CartesiaModel"];
 export type CartesiaEmotion = Schemas["CartesiaEmotion"];
 export type CartesiaSpeed = Schemas["CartesiaSpeed"];
-export type ElevenLabsVoiceConfig = Schemas["ElevenLabsVoiceConfig"];
-export type ElevenLabsModel = Schemas["ElevenLabsModel"];
 export type PhantomVoiceConfig = Schemas["PhantomVoiceConfig"];
 
 // ── Transcriber (STT) configs ─────────────────────────────────────────────
 export type DeepgramTranscriberConfig = Schemas["DeepgramTranscriberConfig"];
 export type DeepgramNovaModel = Schemas["DeepgramNovaModel"];
 export type DeepgramLanguage = Schemas["DeepgramLanguage"];
-export type OpenAITranscriberConfig = Schemas["OpenAITranscriberConfig"];
-export type OpenAIWhisperModel = Schemas["OpenAIWhisperModel"];
 export type SonioxTranscriberConfig = Schemas["SonioxTranscriberConfig"];
 export type SonioxModel = Schemas["SonioxModel"];
 export type PhantomTranscriberConfig = Schemas["PhantomTranscriberConfig"];
