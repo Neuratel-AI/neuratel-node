@@ -9376,8 +9376,6 @@ export interface components {
             groq_api_key?: string | null;
             /** Cartesia Api Key */
             cartesia_api_key?: string | null;
-            /** Xai Api Key */
-            xai_api_key?: string | null;
         };
         /**
          * OrganizationResponse
@@ -9527,8 +9525,6 @@ export interface components {
             groq_api_key?: string | null;
             /** Cartesia Api Key */
             cartesia_api_key?: string | null;
-            /** Xai Api Key */
-            xai_api_key?: string | null;
             /** Permissions */
             permissions?: {
                 [key: string]: unknown;
@@ -9591,8 +9587,6 @@ export interface components {
             groq_api_key?: string | null;
             /** Cartesia Api Key */
             cartesia_api_key?: string | null;
-            /** Xai Api Key */
-            xai_api_key?: string | null;
         };
         /**
          * OutboundCampaignCreate
